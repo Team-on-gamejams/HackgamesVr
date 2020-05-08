@@ -99,6 +99,14 @@
     {
       "name": "/actions/mixedreality",
       "usage": "single"
+    },
+    {
+      "name": "/actions/RightJoystick",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/LeftJoystick",
+      "usage": "single"
     }
   ],
   "default_bindings": [
