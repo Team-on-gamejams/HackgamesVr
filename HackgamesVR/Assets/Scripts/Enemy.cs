@@ -52,12 +52,13 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(new Vector3(moveSpot.x, moveSpot.x, moveSpot.x));
+        transform.LookAt(moveSpot);
+        Debug.DrawLine(transform.position, moveSpot, Color.red, Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
-        Vector3 direction = moveSpot - rb.velocity;
+        Vector3 direction = (moveSpot - transform.position).normalized * speed;
         Vector3 tmp = Vector3.zero;
         rb.velocity = Vector3.SmoothDamp(rb.velocity, direction, ref tmp, 0.1f, speed, Time.deltaTime);
         //rb.angularVelocity = transform.TransformDirection(moveSpot * rotateSpeed);
