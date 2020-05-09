@@ -33,9 +33,9 @@ public class PlayerShip : MonoBehaviour {
 		Vector3 tmp = Vector3.zero;
 
 		foreach (var trail in trailsForward)
-			trail.enabled = leftValue.x <= 0.0f;
+			trail.emitting = leftValue.x <= 0.0f;
 		foreach (var trail in trailsBack)
-			trail.enabled = leftValue.x >= 0.0f;
+			trail.emitting = leftValue.x > 0.0f;
 
 		rb.velocity = Vector3.SmoothDamp(rb.velocity, transform.TransformDirection(new Vector3(leftValue.y * moveSpeed, 0, leftValue.x * moveSpeed)), ref tmp, 0.1f);
 		rb.angularVelocity = transform.TransformDirection(new Vector3(rightValue.x * rotateSpeed, rightValue.y * rotateSpeed, 0));
