@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float rotateSpeed = 10f;
     private float waitTime;
     public float startWaitTime;
+    public float minDistance;
 
     public Vector3 moveSpot;
     public Vector3 pos;
@@ -34,6 +35,9 @@ public class Enemy : MonoBehaviour
     void spotSearch()
     {
         moveSpot = Random.insideUnitSphere * (maxRadius - minRadius);
+        do
+            moveSpot = Random.insideUnitSphere * (maxRadius - minRadius);
+        while ((Vector3.Distance(transform.position, moveSpot) < minDistance));
 
         if (moveSpot.x < 0)
             moveSpot.x -= minRadius;
@@ -61,7 +65,6 @@ public class Enemy : MonoBehaviour
         Vector3 direction = (moveSpot - transform.position).normalized * speed;
         Vector3 tmp = Vector3.zero;
         rb.velocity = Vector3.SmoothDamp(rb.velocity, direction, ref tmp, 0.1f, speed, Time.deltaTime);
-        //rb.angularVelocity = transform.TransformDirection(moveSpot * rotateSpeed);
         if (Vector3.Distance(transform.position, moveSpot) < 1f)
         {
             rb.velocity = Vector3.SmoothDamp(rb.velocity, direction, ref tmp, 0.1f, speed, Time.deltaTime);
