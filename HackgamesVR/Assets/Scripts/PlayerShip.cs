@@ -41,6 +41,10 @@ public class PlayerShip : MonoBehaviour {
 	}
 #endif
 
+	private void Awake() {
+		Application.targetFrameRate = 60;
+	}
+
 	void Update() {
 		Vector2 left1Value = left1Joystick.GetValue();
 		Vector2 left2Value = left2Joystick.GetValue();
@@ -56,7 +60,7 @@ public class PlayerShip : MonoBehaviour {
 
 		Vector3 tmp = Vector3.zero;
 		rb.velocity = Vector3.SmoothDamp(rb.velocity, transform.TransformDirection(new Vector3(left1Value.y * moveSpeed, left2Value.x * moveSpeed, left1Value.x * moveSpeed)), ref tmp, 0.1f);
-		rb.angularVelocity = transform.TransformDirection(new Vector3(right1Value.x * rotateSpeed, right1Value.y * rotateSpeed, right2Value.y * rotateSpeed));
+		rb.angularVelocity = transform.TransformDirection(new Vector3(right1Value.x * rotateSpeed, right1Value.y * rotateSpeed, -right2Value.y * rotateSpeed));
 
 		speedTextField.text = "Speed: " + rb.velocity.magnitude.ToString("0") + "m/s";
 

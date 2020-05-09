@@ -1111,6 +1111,8 @@ namespace Valve.VR.InteractionSystem
             {
                 hoveringInteractable.SendMessage("HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver);
             }
+
+            FixedUpdate();
         }
 
         /// <summary>
@@ -1247,7 +1249,8 @@ namespace Valve.VR.InteractionSystem
                 float maxAngularVelocityChange = MaxAngularVelocityChange * scale;
                 float maxVelocityChange = MaxVelocityChange * scale;
 
-                attachedObjectInfo.attachedRigidbody.velocity = Vector3.MoveTowards(attachedObjectInfo.attachedRigidbody.velocity, velocityTarget, maxVelocityChange);
+                attachedObjectInfo.attachedRigidbody.transform.position = transform.position;
+               // attachedObjectInfo.attachedRigidbody.velocity = Vector3.MoveTowards(attachedObjectInfo.attachedRigidbody.velocity, velocityTarget, maxVelocityChange);
                 attachedObjectInfo.attachedRigidbody.angularVelocity = Vector3.MoveTowards(attachedObjectInfo.attachedRigidbody.angularVelocity, angularTarget, maxAngularVelocityChange);
             }
         }

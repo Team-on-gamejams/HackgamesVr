@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
+
 public class HandWeapon : MonoBehaviour {
 	[SerializeField] SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("Pistol", "Shoot");
 	[SerializeField] Weapon weapon = null;
@@ -26,6 +27,35 @@ public class HandWeapon : MonoBehaviour {
 		}
 		else {
 			weapon.IsShooting = false;
+		}
+	}
+
+	private void OnHandHoverBegin(Hand hand) {
+		hand.ShowGrabHint();
+	}
+
+	private void OnHandHoverEnd(Hand hand) {
+		hand.HideGrabHint();
+	}
+
+	private GrabTypes grabbedWithType;
+	private void HandHoverUpdate(Hand hand) {
+		GrabTypes startingGrabType = hand.GetGrabStarting();
+		bool isGrabEnding = hand.IsGrabbingWithType(grabbedWithType) == false;
+
+		if (grabbedWithType == GrabTypes.None && startingGrabType != GrabTypes.None) {
+			grabbedWithType = startingGrabType;
+
+			hand.AttachObject(gameObject, startingGrabType, Hand.AttachmentFlags.DetachFromOtherHand);
+			hand.HoverLock(interactable);
+
+			hand.HideGrabHint();
+		}
+		else if (grabbedWithType != GrabTypes.None && isGrabEnding) {
+			hand.DetachObject(gameObject);
+			hand.HoverUnlock(interactable);
+			grabbedWithType = GrabTypes.None;
+			transform.localEulerAngles = new Vector3(-45f, 0, 0);
 		}
 	}
 }

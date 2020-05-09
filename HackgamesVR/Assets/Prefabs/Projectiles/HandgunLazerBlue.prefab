@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4325671868282868085}
   - component: {fileID: -7857034500116250690}
   m_Layer: 0
-  m_Name: HandgunLazeBlue
+  m_Name: HandgunLazerBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTag: Player
-  bulletDamage: {x: 8, y: 12}
+  bulletDamage: {x: 3, y: 5}
   maxDistance: 50
   bulletSpeed: 50
   criticalChance: 10
