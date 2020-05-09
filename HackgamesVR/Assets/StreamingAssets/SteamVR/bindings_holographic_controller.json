@@ -150,6 +150,28 @@
             }
          ]
       },
+      "/actions/pistol" : {
+         "sources" : [
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/pistol/in/shoot"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/pistol/in/shoot"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/trigger"
+            }
+         ]
+      },
       "/actions/platformer" : {
          "chords" : [],
          "haptics" : [],

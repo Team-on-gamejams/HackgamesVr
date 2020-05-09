@@ -7,4 +7,8 @@ public class Meteor : MonoBehaviour {
 	private void Awake() {
 		Instantiate(meteors.Random(), transform.position, Quaternion.Euler(Random.Range(-180.0f, 180.0f), Random.Range(-180.0f, 180.0f), Random.Range(-180.0f, 180.0f)), transform);
 	}
+
+	void Die() {
+		Destroy(gameObject);
+	}
 }

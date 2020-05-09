@@ -25,6 +25,8 @@ namespace Valve.VR
         
         private static SteamVR_Input_ActionSet_LeftJoystick p_LeftJoystick;
         
+        private static SteamVR_Input_ActionSet_Pistol p_Pistol;
+        
         public static SteamVR_Input_ActionSet_default _default
         {
             get
@@ -57,17 +59,27 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Input_ActionSet_Pistol Pistol
+        {
+            get
+            {
+                return SteamVR_Actions.p_Pistol.GetCopy<SteamVR_Input_ActionSet_Pistol>();
+            }
+        }
+        
         private static void StartPreInitActionSets()
         {
             SteamVR_Actions.p__default = ((SteamVR_Input_ActionSet_default)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_default>("/actions/default")));
             SteamVR_Actions.p_mixedreality = ((SteamVR_Input_ActionSet_mixedreality)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_mixedreality>("/actions/mixedreality")));
             SteamVR_Actions.p_RightJoystick = ((SteamVR_Input_ActionSet_RightJoystick)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_RightJoystick>("/actions/RightJoystick")));
             SteamVR_Actions.p_LeftJoystick = ((SteamVR_Input_ActionSet_LeftJoystick)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_LeftJoystick>("/actions/LeftJoystick")));
+            SteamVR_Actions.p_Pistol = ((SteamVR_Input_ActionSet_Pistol)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_Pistol>("/actions/Pistol")));
             Valve.VR.SteamVR_Input.actionSets = new Valve.VR.SteamVR_ActionSet[] {
                     SteamVR_Actions._default,
                     SteamVR_Actions.mixedreality,
                     SteamVR_Actions.RightJoystick,
-                    SteamVR_Actions.LeftJoystick};
+                    SteamVR_Actions.LeftJoystick,
+                    SteamVR_Actions.Pistol};
         }
     }
 }

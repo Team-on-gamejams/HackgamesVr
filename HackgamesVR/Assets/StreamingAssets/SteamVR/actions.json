@@ -57,6 +57,10 @@
     {
       "name": "/actions/RightJoystick/in/Shoot",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/Pistol/in/Shoot",
+      "type": "boolean"
     }
   ],
   "action_sets": [
@@ -74,6 +78,10 @@
     },
     {
       "name": "/actions/LeftJoystick",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/Pistol",
       "usage": "single"
     }
   ],

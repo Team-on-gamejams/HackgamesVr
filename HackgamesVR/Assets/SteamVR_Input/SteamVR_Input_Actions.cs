@@ -43,6 +43,8 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_rightJoystick_Shoot;
         
+        private static SteamVR_Action_Boolean p_pistol_Shoot;
+        
         public static SteamVR_Action_Boolean default_InteractUI
         {
             get
@@ -147,6 +149,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean pistol_Shoot
+        {
+            get
+            {
+                return SteamVR_Actions.p_pistol_Shoot.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -162,7 +172,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_SnapTurnRight,
                     SteamVR_Actions.default_Haptic,
                     SteamVR_Actions.mixedreality_ExternalCamera,
-                    SteamVR_Actions.rightJoystick_Shoot};
+                    SteamVR_Actions.rightJoystick_Shoot,
+                    SteamVR_Actions.pistol_Shoot};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_GrabPinch,
@@ -175,7 +186,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_SnapTurnLeft,
                     SteamVR_Actions.default_SnapTurnRight,
                     SteamVR_Actions.mixedreality_ExternalCamera,
-                    SteamVR_Actions.rightJoystick_Shoot};
+                    SteamVR_Actions.rightJoystick_Shoot,
+                    SteamVR_Actions.pistol_Shoot};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
@@ -190,7 +202,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_HeadsetOnHead,
                     SteamVR_Actions.default_SnapTurnLeft,
                     SteamVR_Actions.default_SnapTurnRight,
-                    SteamVR_Actions.rightJoystick_Shoot};
+                    SteamVR_Actions.rightJoystick_Shoot,
+                    SteamVR_Actions.pistol_Shoot};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.default_Squeeze};
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[0];
@@ -206,7 +219,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_HeadsetOnHead,
                     SteamVR_Actions.default_SnapTurnLeft,
                     SteamVR_Actions.default_SnapTurnRight,
-                    SteamVR_Actions.rightJoystick_Shoot};
+                    SteamVR_Actions.rightJoystick_Shoot,
+                    SteamVR_Actions.pistol_Shoot};
         }
         
         private static void PreInitActions()
@@ -224,6 +238,7 @@ namespace Valve.VR
             SteamVR_Actions.p_default_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/default/out/Haptic")));
             SteamVR_Actions.p_mixedreality_ExternalCamera = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/mixedreality/in/ExternalCamera")));
             SteamVR_Actions.p_rightJoystick_Shoot = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/RightJoystick/in/Shoot")));
+            SteamVR_Actions.p_pistol_Shoot = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Pistol/in/Shoot")));
         }
     }
 }

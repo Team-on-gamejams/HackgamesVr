@@ -1,27 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerShip : MonoBehaviour {
-
+	[Header("Moving")] [Space]
 	[SerializeField] float moveSpeed = 4.0f;
 	[SerializeField] float rotateSpeed = 0.5f;
 
-	[SerializeField] Weapon playerWeapon = null;
 
+	[Header("Inputs")] [Space]
 	[SerializeField] ShipJoystick left1Joystick;
 	[SerializeField] ShipJoystick left2Joystick;
 	[SerializeField] ShipJoystick right1Joystick;
 	[SerializeField] ShipJoystick right2Joystick;
-
 	[SerializeField] SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("RightJoystick", "Shoot");
 
+	[Header("Particles")] [Space]
 	[SerializeField] TrailRenderer[] trailsForward;
 	[SerializeField] TrailRenderer[] trailsBack;
 
+	[Header("UI")] [Space]
+	[SerializeField] TextMeshProUGUI speedTextField = null;
+
+	[Header("Refs")] [Space]
+	[SerializeField] Weapon playerWeapon = null;
+
+	[Header("This refs")] [Space]
 	[SerializeField] Rigidbody rb;
 
 #if UNITY_EDITOR
@@ -32,7 +40,6 @@ public class PlayerShip : MonoBehaviour {
 			playerWeapon = GetComponent<Weapon>();
 	}
 #endif
-
 
 	void Update() {
 		Vector2 left1Value = left1Joystick.GetValue();
@@ -50,6 +57,8 @@ public class PlayerShip : MonoBehaviour {
 		Vector3 tmp = Vector3.zero;
 		rb.velocity = Vector3.SmoothDamp(rb.velocity, transform.TransformDirection(new Vector3(left1Value.y * moveSpeed, left2Value.x * moveSpeed, left1Value.x * moveSpeed)), ref tmp, 0.1f);
 		rb.angularVelocity = transform.TransformDirection(new Vector3(right1Value.x * rotateSpeed, right1Value.y * rotateSpeed, right2Value.y * rotateSpeed));
+
+		speedTextField.text = "Speed: " + rb.velocity.magnitude.ToString("0") + "m/s";
 
 		Interactable shootInteractable = right1Joystick.interactable;
 		if(shootInteractable == null)
