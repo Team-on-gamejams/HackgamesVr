@@ -83,7 +83,7 @@ public class Projectile : MonoBehaviour {
 		Destroy(gameObject);
 	}
 
-	public void Shoot() {
-		rb.velocity += transform.forward.normalized * bulletSpeed;
+	public void Shoot(Vector3 shooterVelocity) {
+		rb.velocity += transform.forward.normalized * bulletSpeed + shooterVelocity;
 	}
 }

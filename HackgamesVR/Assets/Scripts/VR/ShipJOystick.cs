@@ -1,6 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 [RequireComponent(typeof(Interactable))]
@@ -8,6 +10,7 @@ public class ShipJoystick : MonoBehaviour {
 	public Interactable interactable;
 
 	[SerializeField] float xOffset = 45.0f;
+	[SerializeField] SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("RightJoystick", "Lock");
 
 	private Hand handHoverLocked = null;
 	private bool driving = false;
@@ -83,12 +86,23 @@ public class ShipJoystick : MonoBehaviour {
 			hand.DetachObject(gameObject);
 			hand.HoverUnlock(interactable);
 			handHoverLocked = null;
-
 			driving = false;
 			grabbedWithType = GrabTypes.None;
+
 			transform.localEulerAngles = new Vector3(-45f, 0, 0);
 			value.x = 0;
 			value.y = 0;
+		}
+
+		if (interactable.attachedToHand) {
+			SteamVR_Input_Sources handIn = interactable.attachedToHand.handType;
+			if (shootAction[handIn].state) {
+				hand.DetachObject(gameObject);
+				hand.HoverUnlock(interactable);
+				driving = false;
+				grabbedWithType = GrabTypes.None;
+				return;
+			}
 		}
 
 		if (driving && isGrabEnding == false && hand.hoveringInteractable == this.interactable) {

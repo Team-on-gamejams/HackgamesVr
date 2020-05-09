@@ -23,6 +23,10 @@ public class Weapon : MonoBehaviour {
 	[SerializeField] TextMeshProUGUI clipTextField = null;
 	[SerializeField] TextMeshProUGUI reloadTextField = null;
 
+	[Header("Refs")]
+	[Space]
+	[SerializeField] Rigidbody parentPb = null;
+
 	float currShootingCooldown = 0;
 	byte currShootPos = 0;
 	byte currClip = 0;
@@ -34,6 +38,7 @@ public class Weapon : MonoBehaviour {
 
 		if (isNeedUI) {
 			reloadTextField.gameObject.SetActive(false);
+			clipTextField.text = new string('|', currClip);
 		}
 	}
 
@@ -108,7 +113,10 @@ public class Weapon : MonoBehaviour {
 				--currClip;
 
 				if (isNeedUI) {
-					clipTextField.text = new string('|', currClip);
+					if (currClip != 0)
+						clipTextField.text = new string('|', currClip);
+					else
+						clipTextField.text = " ";
 				}
 
 				if (currClip <= 0) {
@@ -135,7 +143,7 @@ public class Weapon : MonoBehaviour {
 		//		currProjectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, GameManager.Instance.player.transform.position - transform.position);
 		//}
 		currProjectile.transform.rotation = transform.rotation;
-		currProjectile.Shoot();
+		currProjectile.Shoot(parentPb.velocity);
 
 		if (++currShootPos >= shootPos.Length)
 			currShootPos = 0;

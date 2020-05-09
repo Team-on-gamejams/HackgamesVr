@@ -16,5 +16,13 @@ namespace Valve.VR
     
     public class SteamVR_Input_ActionSet_LeftJoystick : Valve.VR.SteamVR_ActionSet
     {
+        
+        public virtual SteamVR_Action_Boolean Lock
+        {
+            get
+            {
+                return SteamVR_Actions.leftJoystick_Lock;
+            }
+        }
     }
 }

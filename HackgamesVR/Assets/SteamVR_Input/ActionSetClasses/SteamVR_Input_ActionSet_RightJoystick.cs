@@ -24,5 +24,13 @@ namespace Valve.VR
                 return SteamVR_Actions.rightJoystick_Shoot;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean Lock
+        {
+            get
+            {
+                return SteamVR_Actions.rightJoystick_Lock;
+            }
+        }
     }
 }

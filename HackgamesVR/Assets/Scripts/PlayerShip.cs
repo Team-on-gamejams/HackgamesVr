@@ -69,8 +69,16 @@ public class PlayerShip : MonoBehaviour {
 				trail.emitting = left1Value.x > 0.0f;
 		}
 
+		//if(Mathf.Abs(left1Value.y) >= 0.45f && Mathf.Abs(right1Value.y) >= 0.45f && Mathf.Sign(left1Value.y) == Mathf.Sign(right1Value.y)) {
+		//	right2Value.y = Mathf.Sign(left1Value.y);
+		//	left1Value = Vector2.zero;
+		//	right1Value = Vector2.zero;
+		//}
+
 		Vector3 tmp = Vector3.zero;
-		rb.velocity = Vector3.SmoothDamp(rb.velocity, transform.TransformDirection(new Vector3(left1Value.y * moveSpeed, left2Value.x * moveSpeed, left1Value.x * moveSpeed)), ref tmp, 0.1f);
+		Vector3 targetVelocity = transform.TransformDirection(new Vector3(left1Value.y * moveSpeed, left2Value.x * moveSpeed, left1Value.x * moveSpeed));
+		if(targetVelocity != Vector3.zero)
+			rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref tmp, 0.1f);
 		rb.angularVelocity = transform.TransformDirection(new Vector3(right1Value.x * rotateSpeed, right1Value.y * rotateSpeed, -right2Value.y * rotateSpeed));
 
 		speedTextField.text = "Speed: " + rb.velocity.magnitude.ToString("0") + "m/s";

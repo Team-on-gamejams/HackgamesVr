@@ -59,6 +59,14 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/RightJoystick/in/Lock",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/LeftJoystick/in/Lock",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/Pistol/in/Shoot",
       "type": "boolean"
     }
@@ -148,7 +156,10 @@
       "/actions/default/out/Haptic": "Haptic",
       "/actions/default/in/SnapTurnLeft": "Snap Turn (Left)",
       "/actions/default/in/SnapTurnRight": "Snap Turn (Right)",
-      "/actions/RightJoystick/in/Shoot": "Shoot"
+      "/actions/RightJoystick/in/Shoot": "Shoot",
+      "/actions/RightJoystick/in/Lock": "Lock",
+      "/actions/LeftJoystick/in/Lock": "Lock",
+      "/actions/Pistol/in/Shoot": "Shoot"
     }
   ]
 }
