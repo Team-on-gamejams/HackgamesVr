@@ -5,7 +5,7 @@ using Valve.VR.InteractionSystem;
 
 [RequireComponent(typeof(Interactable))]
 public class ShipJoystick : MonoBehaviour {
-	[SerializeField] Interactable interactable;
+	public Interactable interactable;
 
 	[SerializeField] float xOffset = 45.0f;
 
