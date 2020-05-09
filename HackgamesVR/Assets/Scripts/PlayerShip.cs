@@ -52,11 +52,18 @@ public class PlayerShip : MonoBehaviour {
 		Vector2 right1Value = right1Joystick.GetValue();
 		Vector2 right2Value = right2Joystick.GetValue();
 
-
-		foreach (var trail in trailsForward)
-			trail.emitting = left1Value.x <= 0.0f;
-		foreach (var trail in trailsBack)
-			trail.emitting = left1Value.x > 0.0f;
+		if(left2Value.x != 0) {
+			foreach (var trail in trailsForward)
+				trail.emitting = true;
+			foreach (var trail in trailsBack)
+				trail.emitting = true;
+		}
+		else {
+			foreach (var trail in trailsForward)
+				trail.emitting = left1Value.x <= 0.0f;
+			foreach (var trail in trailsBack)
+				trail.emitting = left1Value.x > 0.0f;
+		}
 
 		Vector3 tmp = Vector3.zero;
 		rb.velocity = Vector3.SmoothDamp(rb.velocity, transform.TransformDirection(new Vector3(left1Value.y * moveSpeed, left2Value.x * moveSpeed, left1Value.x * moveSpeed)), ref tmp, 0.1f);
