@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
+using System;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerShip : MonoBehaviour {
@@ -25,6 +26,7 @@ public class PlayerShip : MonoBehaviour {
 
 	[Header("UI")] [Space]
 	[SerializeField] TextMeshProUGUI speedTextField = null;
+	[SerializeField] TextMeshProUGUI timeTextField = null;
 
 	[Header("Refs")] [Space]
 	[SerializeField] Weapon playerWeapon = null;
@@ -52,6 +54,8 @@ public class PlayerShip : MonoBehaviour {
 		Vector2 right1Value = right1Joystick.GetValue();
 		Vector2 right2Value = right2Joystick.GetValue();
 
+		Debug.Log($"{left1Value} {right1Value}");
+
 		if(left2Value.x != 0) {
 			foreach (var trail in trailsForward)
 				trail.emitting = true;
@@ -70,6 +74,7 @@ public class PlayerShip : MonoBehaviour {
 		rb.angularVelocity = transform.TransformDirection(new Vector3(right1Value.x * rotateSpeed, right1Value.y * rotateSpeed, -right2Value.y * rotateSpeed));
 
 		speedTextField.text = "Speed: " + rb.velocity.magnitude.ToString("0") + "m/s";
+		timeTextField.text = DateTime.Now.ToShortTimeString();
 
 		Interactable shootInteractable = right1Joystick.interactable;
 		if(shootInteractable == null)
