@@ -351,7 +351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104204712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.078922, y: -59.491745, z: -25.93475}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -369,8 +369,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b598b403b336c94899ac520c7e32f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obstacle: {fileID: 5620502293925523959, guid: f34d4e0f4bcba234b8b47c6207792f6d,
-    type: 3}
+  waves:
+  - name: a
+    enemy: {fileID: 5620502293925523959, guid: f34d4e0f4bcba234b8b47c6207792f6d, type: 3}
+    enemyCount: 10
+    spawnDelay: 2
+  - name: b
+    enemy: {fileID: 5620502293925523959, guid: f34d4e0f4bcba234b8b47c6207792f6d, type: 3}
+    enemyCount: 0
+    spawnDelay: 0
+  waveDelay: 10
 --- !u!1001 &4405052706213402644
 PrefabInstance:
   m_ObjectHideFlags: 0
