@@ -11,7 +11,10 @@ public class ShipJoystick : MonoBehaviour {
 
 	private Hand handHoverLocked = null;
 	private bool driving = false;
-	Vector3 lastValidAngle = Vector3.zero;
+
+	Vector3 bounds1 = new Vector3(-90, 0, -90);
+	Vector3 bounds2 = new Vector3(0, 0, 90);
+	Vector2 value = Vector3.zero;
 
 #if UNITY_EDITOR
 	private void OnValidate() {
@@ -26,6 +29,10 @@ public class ShipJoystick : MonoBehaviour {
 			handHoverLocked.HoverUnlock(interactable);
 			handHoverLocked = null;
 		}
+	}
+
+	public Vector2 GetValue() {
+		return value;
 	}
 
 	private IEnumerator HapticPulses(Hand hand, float flMagnitude, int nCount) {
@@ -43,7 +50,6 @@ public class ShipJoystick : MonoBehaviour {
 
 	private void OnHandHoverBegin(Hand hand) {
 		hand.ShowGrabHint();
-		lastValidAngle = new Vector3(0, 0, 0);
 	}
 
 	private void OnHandHoverEnd(Hand hand) {
@@ -81,18 +87,18 @@ public class ShipJoystick : MonoBehaviour {
 			driving = false;
 			grabbedWithType = GrabTypes.None;
 			transform.localEulerAngles = new Vector3(-45f, 0, 0);
+			value.x = 0;
+			value.y = 0;
 		}
 
 		if (driving && isGrabEnding == false && hand.hoveringInteractable == this.interactable) {
-			Vector3 bounds1 = new Vector3(-90, 0, -90);
-			Vector3 bounds2 = new Vector3(0, 0, 90);
-			transform.rotation = ClampRotation(hand.transform.rotation, bounds1, bounds2);
+			transform.localRotation = ClampRotation(hand.transform.localRotation, bounds1, bounds2);
 
 			//Update ship angle
 		}
 	}
 
-	public static Quaternion ClampRotation(Quaternion q, Vector3 boundsMin, Vector3 boundsMax) {
+	public Quaternion ClampRotation(Quaternion q, Vector3 boundsMin, Vector3 boundsMax) {
 		q.x /= q.w;
 		q.y /= q.w;
 		q.z /= q.w;
@@ -109,6 +115,9 @@ public class ShipJoystick : MonoBehaviour {
 		float angleZ = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.z);
 		angleZ = Mathf.Clamp(angleZ, boundsMin.z, boundsMax.z);
 		q.z = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleZ);
+
+		value.x = (angleX + 45f) / 45f;
+		value.y = angleZ / -90.0f;
 
 		return q;
 	}
