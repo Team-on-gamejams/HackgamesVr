@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
+	public Action onDie;
+
 	[SerializeField] Rigidbody rb;
 
 	public float speed = 100f;
@@ -89,9 +92,9 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void SpotSearch() {
-		float p = Random.Range(0.0f, 1.0f);
+		float p = UnityEngine.Random.Range(0.0f, 1.0f);
 		if (p <= 0.33f) {
-			moveSpot = Random.insideUnitSphere * (maxRadius - minRadius);
+			moveSpot = UnityEngine.Random.insideUnitSphere * (maxRadius - minRadius);
 
 			if (moveSpot.x < 0)
 				moveSpot.x -= minRadius;
@@ -122,5 +125,6 @@ public class Enemy : MonoBehaviour {
 
 	void Die() {
 		Destroy(gameObject);
+		onDie?.Invoke();
 	}
 }

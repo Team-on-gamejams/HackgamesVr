@@ -12,9 +12,11 @@ public class Spawner : MonoBehaviour {
 	[SerializeField] Transform player;
 	[SerializeField] Transform mothership;
 
+	int aliveEnemies;
+
 	public void StartWave() {
 		Wave wave = waves[currWave];
-
+		aliveEnemies = wave.enemiesPrefab.Length;
 		StartCoroutine(SpawnRoutine());
 		
 		IEnumerator SpawnRoutine() {
@@ -27,12 +29,28 @@ public class Spawner : MonoBehaviour {
 
 	public void OnWinWave() {
 		++currWave;
+		if(currWave >= waves.Length) {
+			//TODO: win game
+			currWave = waves.Length - 1;
+		}
 	}
 
 	void SpawnEnemy(GameObject _enemy) {
 		Enemy enemy = Instantiate(_enemy, spawnPoint.position, Quaternion.identity, null).GetComponent<Enemy>();
 		enemy.mothership = mothership;
 		enemy.player = player;
+		enemy.onDie += OnEnemyDie;
+	}
+
+	void OnEnemyDie() {
+		--aliveEnemies;
+
+		if(aliveEnemies <= 0) {
+			//TODO: win wave
+			OnWinWave();
+			StartWave();
+			
+		}
 	}
 
 	[System.Serializable]
