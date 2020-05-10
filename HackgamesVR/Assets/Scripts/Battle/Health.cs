@@ -17,6 +17,7 @@ public class Health : MonoBehaviour {
 	[SerializeField] Transform sliderParent = null;
 	[SerializeField] Slider bar = null;
 	[SerializeField] TextMeshProUGUI hpTextField = null;
+	[SerializeField] Image overlayImage = null;
 
 	[Space]
 	[SerializeField] GameObject damageNumberPrefab = null;  //TODO: poll this instead of spawning
@@ -74,6 +75,28 @@ public class Health : MonoBehaviour {
 		currHp -= takenDmg;
 
 		ShowDamageNumber(takenDmg, projectile.transform.position);
+
+		if (overlayImage) {
+			LeanTween.cancel(overlayImage.gameObject, false);
+			LeanTween.value(overlayImage.gameObject, overlayImage.color.a, 1.0f, 0.15f)
+			.setOnUpdate((float a) => {
+				Color c = overlayImage.color;
+				c.a = a;
+				overlayImage.color = c;
+			})
+			.setOnComplete(()=> {
+				float expectedA = 1.0f - currHp / maxHp;
+				if (expectedA <= 0.5f)
+					expectedA = 0.0f;
+
+				LeanTween.value(overlayImage.gameObject, overlayImage.color.a, expectedA, 0.15f)
+				.setOnUpdate((float a) => {
+					Color c = overlayImage.color;
+					c.a = a;
+					overlayImage.color = c;
+				});
+			});
+		}
 
 		if (!bar.gameObject.activeSelf)
 			ShowBar();
