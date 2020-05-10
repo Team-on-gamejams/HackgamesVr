@@ -8,12 +8,13 @@ public class GameFlow : MonoBehaviour {
 	public static GameFlow instance;
 
 	[Header("Lore")] [Space]
-	[SerializeField] string[] textsMain;
+	[SerializeField] TutorialText[] tutorials;
 	[SerializeField] AchievmentText[] textsAchievment;
 
 	[Header("Refs")] [Space]
 	[SerializeField] TextMeshProUGUI mainText;
 	[SerializeField] TextMeshProUGUI achievmentText;
+	[SerializeField] TextMeshProUGUI objectiveText;
 	[SerializeField] TextMeshProUGUI nextWaveText;
 	[SerializeField] PlayerShip player;
 	[SerializeField] Weapon playerWeapon;
@@ -22,7 +23,11 @@ public class GameFlow : MonoBehaviour {
 	bool isWaitDeadButton = false;
 	bool isWaitForUpgrade = false;
 
+	byte currTutorial = 0;
 	byte openedAchievments = 0;
+
+	byte killedAsteroids = 0;
+	byte neededAsteroids = 3;
 
 	private void Awake() {
 		instance = this;
@@ -30,10 +35,12 @@ public class GameFlow : MonoBehaviour {
 
 	private void Start() {
 		nextWaveText.text = "  ";
-		DelayedWaveStart(5.0f);
+		ProcessTutorial();
 	}
 
 	public void OnWinWave() {
+		if (isWaitDeadButton)
+			return;
 		upgrader.Shuffle();
 
 		mainText.text = "Волна пройдена!\n\n";
@@ -42,6 +49,9 @@ public class GameFlow : MonoBehaviour {
 		mainText.text += $"(B){upgrader.data[1].name} - {upgrader.data[1].description}\n\n";
 		mainText.text += $"(C){upgrader.data[2].name} - {upgrader.data[2].description}\n\n";
 		isWaitForUpgrade = true;
+
+		TutorialText t = tutorials[currTutorial];
+		objectiveText.text = string.IsNullOrEmpty(t.textObjective) ? "  " : t.textObjective.Replace("\\n", "\n") + spawner.GetProgressStr();
 
 		DelayedWaveStart(20.0f);
 	}
@@ -61,12 +71,17 @@ public class GameFlow : MonoBehaviour {
 	}
 
 	public void OnWinGame() {
+		if (isWaitDeadButton)
+			return;
 		mainText.text = "You Win!\n\n";
 		mainText.text += $"Знайдено пасхальних яєць: {openedAchievments}/{textsAchievment.Length + 2}\n";
 		mainText.text += $"Вистреляно лазерів: {playerWeapon.shootedProjectiles}\n";
 		mainText.text += $"Пройдено відстані: {player.movedDist}\n";
 		mainText.text += $"Вбито ворогів: {spawner.killedEnemies}\n";
 		mainText.text += "\n\nНатистінь 'A' щоб почати гру заново(персональні апгрейди зберігаються)";
+
+		TutorialText t = tutorials[currTutorial];
+		objectiveText.text = string.IsNullOrEmpty(t.textObjective) ? "  " : t.textObjective.Replace("\\n", "\n") + spawner.GetProgressStr();
 
 		isWaitDeadButton = true;
 	}
@@ -78,10 +93,17 @@ public class GameFlow : MonoBehaviour {
 			return;
 		}
 
+		if(id == 0 && currTutorial <= 7) {
+			++currTutorial;
+			ProcessTutorial();
+			return;
+		}
+
 		if (isWaitForUpgrade) {
 			upgrader.ApplyUpgrade(upgrader.data[id].type);
 			mainText.text = "  ";
 			isWaitForUpgrade = false;
+			return;
 		}
 	}
 
@@ -97,6 +119,53 @@ public class GameFlow : MonoBehaviour {
 			.setOnComplete(()=> {
 				achievmentText.text = "  ";
 			});
+	}
+
+	public void OnAsteroidDie() {
+		if(currTutorial != 8) {
+			if (tutorials[currTutorial].arrowObj != null && tutorials[currTutorial].arrowObj.Length != 0) {
+				foreach (var arrow in tutorials[currTutorial].arrowObj)
+					arrow.gameObject.SetActive(false);
+			}
+			currTutorial = 8;
+			ProcessTutorial();
+		}
+
+		++killedAsteroids;
+
+		TutorialText t = tutorials[currTutorial];
+		objectiveText.text = string.IsNullOrEmpty(t.textObjective) ? "  " : t.textObjective.Replace("\\n", "\n") + $"({killedAsteroids}/{neededAsteroids})";
+
+		if(neededAsteroids == killedAsteroids) {
+			LeanTween.delayedCall(1.0f, () => {
+				++currTutorial;
+				ProcessTutorial();
+				DelayedWaveStart(5.0f);
+			});
+		}
+	}
+
+	void ProcessTutorial() {
+		if(currTutorial != 0 && tutorials[currTutorial - 1].arrowObj != null && tutorials[currTutorial - 1].arrowObj.Length != 0) {
+			foreach (var arrow in tutorials[currTutorial - 1].arrowObj)
+				arrow.gameObject.SetActive(false);
+		}
+
+		TutorialText t = tutorials[currTutorial];
+
+		mainText.text = string.IsNullOrEmpty(t.textMain) ? "  " : t.textMain.Replace("\\n", "\n");
+		objectiveText.text = string.IsNullOrEmpty(t.textObjective) ? "  " : t.textObjective.Replace("\\n", "\n");
+
+		if(currTutorial == 8)
+			objectiveText.text += $"({killedAsteroids} / {neededAsteroids})";
+		if (currTutorial == 9)
+			objectiveText.text += spawner.GetProgressStr();
+
+		if (t.arrowObj != null && t.arrowObj.Length != 0)
+			foreach (var arrow in t.arrowObj)
+				arrow.gameObject.SetActive(true);
+		if(t.toEnable != null)
+			t.toEnable.SetActive(true);
 	}
 
 	void DelayedWaveStart(float time) {
@@ -127,5 +196,13 @@ public class GameFlow : MonoBehaviour {
 		public string textTitle;
 		public string name;
 		public string description;
+	}
+
+	[System.Serializable]
+	struct TutorialText {
+		public string textMain;
+		public string textObjective;
+		public GameObject[] arrowObj;
+		public GameObject toEnable;
 	}
 }

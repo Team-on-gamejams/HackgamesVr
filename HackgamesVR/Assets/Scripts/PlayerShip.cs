@@ -90,7 +90,7 @@ public class PlayerShip : MonoBehaviour {
 		timeTextField.text = DateTime.Now.ToShortTimeString();
 
 		Interactable shootInteractable = right1Joystick.interactable;
-		if(shootInteractable == null)
+		if(shootInteractable == null || !shootInteractable.attachedToHand)
 			shootInteractable = right2Joystick.interactable;
 		if (shootInteractable != null && shootInteractable.attachedToHand) {
 			SteamVR_Input_Sources hand = shootInteractable.attachedToHand.handType;

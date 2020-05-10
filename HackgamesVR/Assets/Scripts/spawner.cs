@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour {
@@ -13,16 +14,27 @@ public class Spawner : MonoBehaviour {
 	[SerializeField] Transform spawnPoint;
 	[SerializeField] Transform player;
 	[SerializeField] Transform mothership;
+	[SerializeField] TextMeshProUGUI enemiesLeftTextField;
 
 	int aliveEnemies;
+	int killedEnemiesCurrWave;
+	int spawnedEnemies;
+
+	private void Awake() {
+		enemiesLeftTextField.text = "  ";
+	}
 
 	public void StartWave() {
 		Wave wave = waves[currWave];
 		aliveEnemies = wave.enemiesPrefab.Length;
+		killedEnemiesCurrWave = 0;
 		StartCoroutine(SpawnRoutine());
 		
 		IEnumerator SpawnRoutine() {
+			spawnedEnemies = 0;
 			for (int i = 0; i < wave.enemiesPrefab.Length; ++i) {
+				spawnedEnemies++;
+				enemiesLeftTextField.text = $"Enemies left: {spawnedEnemies - killedEnemiesCurrWave}/{spawnedEnemies}";
 				SpawnEnemy(wave.enemiesPrefab[i]);
 				yield return new WaitForSeconds(wave.delays[i]);
 			}
@@ -31,7 +43,8 @@ public class Spawner : MonoBehaviour {
 
 	public void OnWinWave() {
 		++currWave;
-		if(currWave >= waves.Length) {
+		enemiesLeftTextField.text = $"  ";
+		if (currWave >= waves.Length) {
 			//TODO: win game
 			currWave = waves.Length - 1;
 			GameFlow.instance.OnWinGame();
@@ -39,6 +52,10 @@ public class Spawner : MonoBehaviour {
 		else {
 			GameFlow.instance.OnWinWave();
 		}
+	}
+
+	public string GetProgressStr() {
+		return $" ({currWave + 1}/{waves.Length})";
 	}
 
 	void SpawnEnemy(GameObject _enemy) {
@@ -50,9 +67,12 @@ public class Spawner : MonoBehaviour {
 
 	void OnEnemyDie() {
 		++killedEnemies;
+		++killedEnemiesCurrWave;
 		--aliveEnemies;
 
-		if(aliveEnemies <= 0) {
+		enemiesLeftTextField.text = $"Enemies left: {spawnedEnemies - killedEnemiesCurrWave}/{spawnedEnemies}";
+
+		if (aliveEnemies <= 0) {
 			OnWinWave();
 		}
 	}

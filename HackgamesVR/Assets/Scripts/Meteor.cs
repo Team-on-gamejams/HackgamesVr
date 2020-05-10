@@ -9,6 +9,7 @@ public class Meteor : MonoBehaviour {
 	}
 
 	void Die() {
+		GameFlow.instance.OnAsteroidDie();
 		Destroy(gameObject);
 	}
 }

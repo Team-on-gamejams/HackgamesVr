@@ -10,7 +10,7 @@ public class ShipJoystick : MonoBehaviour {
 	public Interactable interactable;
 
 	[SerializeField] float xOffset = 45.0f;
-	[SerializeField] SteamVR_Action_Boolean lockAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("RightJoystick", "Lock");
+	[SerializeField] SteamVR_Action_Boolean lockAction;
 
 	private Hand handHoverLocked = null;
 	private bool driving = false;
