@@ -4,6 +4,9 @@ using UnityEngine;
 using TMPro;
 
 public class Weapon : MonoBehaviour {
+	public int reloads = 0;
+	public int shootedProjectiles = 0;
+
 	public bool IsShooting = false;
 
 	[Header("Projectile")]
@@ -56,6 +59,8 @@ public class Weapon : MonoBehaviour {
 		if (reloadRoutine != null)
 			return;
 
+		++reloads;
+		int dots = 0;
 		reloadRoutine = StartCoroutine(ReloadRoutine());
 
 		if (isNeedUI) {
@@ -63,7 +68,18 @@ public class Weapon : MonoBehaviour {
 		}
 
 		IEnumerator ReloadRoutine() {
-			yield return new WaitForSeconds(reloadTime);
+			float currTime = 0.0f;
+
+			while (currTime < reloadTime) {
+				currTime += Time.deltaTime + 0.25f;
+				if (isNeedUI)
+					reloadTextField.text = "Reloading" + (dots != 0 ? new string('.', dots) : "");
+				yield return new WaitForSeconds(0.25f);
+				++dots;
+				if (dots >= 4)
+					dots = 0;
+			}
+
 
 			currClip = clipSize;
 			reloadRoutine = null;
@@ -129,6 +145,7 @@ public class Weapon : MonoBehaviour {
 	void LaunchBullet() {
 		if (currProjectile == null)
 			return;
+		++shootedProjectiles;
 
 		currProjectile.transform.SetParent(null);
 		//if (isPlayerWeapon) {
@@ -149,5 +166,20 @@ public class Weapon : MonoBehaviour {
 			currShootPos = 0;
 
 		currProjectile = null;
+	}
+
+	public void AppleReloadUpgrade(byte clipAdd, float reloadSpeedChange) {
+		clipSize += clipAdd;
+		if(reloadTime > reloadSpeedChange)
+			reloadTime -= reloadSpeedChange;
+		Reload();
+	}
+
+	public void AppleSpeedUpgrade(float speed) {
+		projectilePrefab.ApplySpeedUpgrade(speed);
+	}
+
+	public void AppleDamageUpgrade(float dmg) {
+		projectilePrefab.ApplyDamageUpgrade(dmg);
 	}
 }

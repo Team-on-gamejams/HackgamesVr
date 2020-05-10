@@ -20,6 +20,7 @@ public class MotherShip : MonoBehaviour {
 	}
 
 	void Die() {
+		GameFlow.instance.OnLoseGame(true);
 		Destroy(gameObject);
 	}
 }

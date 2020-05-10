@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour {
+	public int killedEnemies = 0;
+
 	[Header("Waves")] [Space]
 	[SerializeField] Wave[] waves = null;
 	[SerializeField] int currWave = 0;
@@ -32,6 +34,10 @@ public class Spawner : MonoBehaviour {
 		if(currWave >= waves.Length) {
 			//TODO: win game
 			currWave = waves.Length - 1;
+			GameFlow.instance.OnWinGame();
+		}
+		else {
+			GameFlow.instance.OnWinWave();
 		}
 	}
 
@@ -43,13 +49,11 @@ public class Spawner : MonoBehaviour {
 	}
 
 	void OnEnemyDie() {
+		++killedEnemies;
 		--aliveEnemies;
 
 		if(aliveEnemies <= 0) {
-			//TODO: win wave
 			OnWinWave();
-			StartWave();
-			
 		}
 	}
 

@@ -35,10 +35,11 @@ public class Health : MonoBehaviour {
 
 	void Awake() {
 		camera = Camera.main;
-		currHp = maxHp;
 	}
 
 	void Start() {
+		currHp = maxHp;
+		
 		if (bar != null) {
 			bar.gameObject.SetActive(needShowOnInit);
 			bar.minValue = 0.0f;
@@ -119,6 +120,11 @@ public class Health : MonoBehaviour {
 		damageNumber.GetComponent<DamageNumber>().StartSequence(damage, isCrit);
 
 		return damageNumber;
+	}
+
+	public void ApplyHpUpgrade(float hp) {
+		maxHp += hp;
+		Start();
 	}
 
 	void UpdateHpBar() {

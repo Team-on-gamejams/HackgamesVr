@@ -8,10 +8,12 @@ using System;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerShip : MonoBehaviour {
+	public float movedDist = 0.0f;
+	public bool isProcessInput = true;
+
 	[Header("Moving")] [Space]
 	[SerializeField] float moveSpeed = 4.0f;
 	[SerializeField] float rotateSpeed = 0.5f;
-
 
 	[Header("Inputs")] [Space]
 	[SerializeField] ShipJoystick left1Joystick;
@@ -48,6 +50,9 @@ public class PlayerShip : MonoBehaviour {
 	}
 
 	void Update() {
+		if (!isProcessInput)
+			return;
+
 		Vector2 left1Value = left1Joystick.GetValue();
 		Vector2 left2Value = left2Joystick.GetValue();
 
@@ -78,6 +83,8 @@ public class PlayerShip : MonoBehaviour {
 		if(targetVelocity != Vector3.zero)
 			rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref tmp, 0.1f);
 		rb.angularVelocity = transform.TransformDirection(new Vector3(right1Value.x * rotateSpeed, right1Value.y * rotateSpeed, -right2Value.y * rotateSpeed));
+		movedDist += rb.velocity.magnitude;
+
 
 		speedTextField.text = "Speed: " + rb.velocity.magnitude.ToString("0") + "m/s";
 		timeTextField.text = DateTime.Now.ToShortTimeString();
@@ -94,7 +101,11 @@ public class PlayerShip : MonoBehaviour {
 		}
 	}
 
+	public void ApplyEngineUpgrade(float _moveSpeed) {
+		moveSpeed += _moveSpeed;
+	}
+
 	void Die() {
-		//TODO: lose
+		GameFlow.instance.OnLoseGame(false);
 	}
 }

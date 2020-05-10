@@ -86,4 +86,13 @@ public class Projectile : MonoBehaviour {
 	public void Shoot(Vector3 shooterVelocity) {
 		rb.velocity += transform.forward.normalized * bulletSpeed + shooterVelocity;
 	}
+
+	public void ApplySpeedUpgrade(float speedAdd) {
+		bulletSpeed += speedAdd;
+	}
+
+	public void ApplyDamageUpgrade(float dmgAdd) {
+		bulletDamage.y += dmgAdd;
+		bulletDamage.x += dmgAdd;
+	}
 }
