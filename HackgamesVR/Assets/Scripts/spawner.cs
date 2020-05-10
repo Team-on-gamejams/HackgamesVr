@@ -7,10 +7,14 @@ public class Spawner : MonoBehaviour {
 	[SerializeField] Wave[] waves = null;
 	[SerializeField] int currWave = 0;
 
-	[Header("Waves")] [Space]
+	[Header("Refs")] [Space]
 	[SerializeField] Transform spawnPoint;
+	[SerializeField] Transform player;
+	[SerializeField] Transform mothership;
 
-	void SpawnWave(Wave wave) {
+	public void StartWave() {
+		Wave wave = waves[currWave];
+
 		StartCoroutine(SpawnRoutine());
 		
 		IEnumerator SpawnRoutine() {
@@ -21,8 +25,14 @@ public class Spawner : MonoBehaviour {
 		}
 	}
 
-	void SpawnEnemy(GameObject enemy) {
-		Instantiate(enemy, spawnPoint.position, Quaternion.identity, null);
+	public void OnWinWave() {
+		++currWave;
+	}
+
+	void SpawnEnemy(GameObject _enemy) {
+		Enemy enemy = Instantiate(_enemy, spawnPoint.position, Quaternion.identity, null).GetComponent<Enemy>();
+		enemy.mothership = mothership;
+		enemy.player = player;
 	}
 
 	[System.Serializable]

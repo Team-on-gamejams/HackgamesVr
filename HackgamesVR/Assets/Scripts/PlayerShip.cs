@@ -54,8 +54,6 @@ public class PlayerShip : MonoBehaviour {
 		Vector2 right1Value = right1Joystick.GetValue();
 		Vector2 right2Value = right2Joystick.GetValue();
 
-		Debug.Log($"{left1Value} {right1Value}");
-
 		if(left2Value.x != 0) {
 			foreach (var trail in trailsForward)
 				trail.emitting = true;

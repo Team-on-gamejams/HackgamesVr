@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class GameFlow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[Header("Refs")] [Space]
+	[SerializeField] Spawner spawner;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Start() {
+		LeanTween.delayedCall(0.5f, spawner.StartWave);
+	}
 }

@@ -2,81 +2,125 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
-{
-    [SerializeField] Rigidbody rb;
+public class Enemy : MonoBehaviour {
+	[SerializeField] Rigidbody rb;
 
-    public float speed = 100f;
-    public float rotateSpeed = 10f;
-    private float waitTime;
-    public float startWaitTime;
-    public float minDistance;
+	public float speed = 100f;
+	public float rotateSpeed = 10f;
 
-    public Vector3 moveSpot;
-    public Vector3 pos;
+	public float maxRadius;
+	public float minRadius;
 
-    public float maxRadius;
-    public float minRadius;
+
+	[Header("This Refs")] [Space]
+	public Weapon weapon;
+
+	[Header("Refs")] [Space]
+	public Transform player;
+	public Transform mothership;
+
+	private Vector3 moveSpot;
+	private Transform moveTarget = null;
+
+	float collisionStayTime = 0.0f;
+	
 
 #if UNITY_EDITOR
-    private void OnValidate()
-    {
-        if (rb == null)
-            rb = GetComponent<Rigidbody>();
-    }
+	private void OnValidate() {
+		if (rb == null)
+			rb = GetComponent<Rigidbody>();
+	}
 #endif
 
-    private void Start()
-    {
-        waitTime = startWaitTime;
-        spotSearch();
-    }
+	private void Start() {
+		SpotSearch();
+	}
 
-    void spotSearch()
-    {
-        moveSpot = Random.insideUnitSphere * (maxRadius - minRadius);
-        do
-            moveSpot = Random.insideUnitSphere * (maxRadius - minRadius);
-        while ((Vector3.Distance(transform.position, moveSpot) < minDistance));
+	private void Update() {
+		Debug.DrawLine(transform.position, moveTarget != null ? moveTarget.position : moveSpot, moveTarget != null ? Color.green : Color.red, Time.deltaTime);
+	}
 
-        if (moveSpot.x < 0)
-            moveSpot.x -= minRadius;
-        else
-            moveSpot.x += minRadius;
-        if (moveSpot.y < 0)
-            moveSpot.y -= minRadius;
-        else
-            moveSpot.y += minRadius;
-        if (moveSpot.z < 0)
-            moveSpot.z -= minRadius;
-        else
-            moveSpot.z += minRadius;
-    }
+	private void FixedUpdate() {
+		Vector3 targetPos = moveTarget != null ? moveTarget.position : moveSpot;
+		float usedSpeed = speed;
 
+		Vector3 tmp = Vector3.zero;
 
-    private void Update()
-    {
-        transform.LookAt(moveSpot);
-        Debug.DrawLine(transform.position, moveSpot, Color.red, Time.deltaTime);
-    }
+		Vector3 targetDirection = targetPos - transform.position;
+		float singleStep = rotateSpeed * Time.deltaTime;
+		Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+		transform.rotation = Quaternion.LookRotation(newDirection);
 
-    private void FixedUpdate()
-    {
-        Vector3 direction = (moveSpot - transform.position).normalized * speed;
-        Vector3 tmp = Vector3.zero;
-        rb.velocity = Vector3.SmoothDamp(rb.velocity, direction, ref tmp, 0.1f, speed, Time.deltaTime);
-        if (Vector3.Distance(transform.position, moveSpot) < 1f)
-        {
-            rb.velocity = Vector3.SmoothDamp(rb.velocity, direction, ref tmp, 0.1f, speed, Time.deltaTime);
-            spotSearch();
-            if (waitTime <= 0)
-            {
-                waitTime = startWaitTime;
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
-        }
-    }
+		if(moveTarget != null) {
+			if ((transform.position - targetPos).sqrMagnitude < 1600.0f) {		//40 * 40
+				weapon.IsShooting = true;
+				usedSpeed /= 4;
+			}
+			else if ((transform.position - targetPos).sqrMagnitude < 9.0f) {		// 3 * 3
+				SpotSearch();
+			}
+		}
+		else {
+			if ((transform.position - targetPos).sqrMagnitude < 1.0f) {
+				SpotSearch();
+			}
+		}
+
+		rb.velocity = Vector3.SmoothDamp(rb.velocity, transform.forward.normalized * usedSpeed, ref tmp, 0.1f, speed, Time.deltaTime);
+
+	}
+
+	private void OnCollisionStay(Collision collision) {
+		collisionStayTime += Time.deltaTime;
+		weapon.IsShooting = true;
+
+		if (collisionStayTime >= 1.0f) {
+			collisionStayTime = -3.0f;		//Так і має бути. Хай жде додатково 3 секунду після зміни, їм дуже тяжко вилетіти після зіткнення
+			SpotSearch();
+		}
+	}
+
+	private void OnCollisionEnter(Collision collision) {
+		collisionStayTime = 0.0f;
+	}
+
+	private void OnCollisionExit(Collision collision) {
+		weapon.IsShooting = false;
+	}
+
+	void SpotSearch() {
+		float p = Random.Range(0.0f, 1.0f);
+		if (p <= 0.33f) {
+			moveSpot = Random.insideUnitSphere * (maxRadius - minRadius);
+
+			if (moveSpot.x < 0)
+				moveSpot.x -= minRadius;
+			else
+				moveSpot.x += minRadius;
+			if (moveSpot.y < 0)
+				moveSpot.y -= minRadius;
+			else
+				moveSpot.y += minRadius;
+			if (moveSpot.z < 0)
+				moveSpot.z -= minRadius;
+			else
+				moveSpot.z += minRadius;
+
+			moveSpot += mothership.position;
+			moveTarget = null;
+		}
+		else if (p <= 0.66f) {
+			moveSpot = Vector3.zero;
+			moveTarget = mothership;
+		}
+		else {
+			moveSpot = Vector3.zero;
+			moveTarget = player;
+		}
+		weapon.IsShooting = false;
+	}
+
+	void Die() {
+		Destroy(gameObject);
+	}
 }
