@@ -14,6 +14,7 @@ public class GameFlow : MonoBehaviour {
 	[Header("Refs")] [Space]
 	[SerializeField] TextMeshProUGUI mainText;
 	[SerializeField] TextMeshProUGUI achievmentText;
+	[SerializeField] TextMeshProUGUI nextWaveText;
 	[SerializeField] PlayerShip player;
 	[SerializeField] Weapon playerWeapon;
 	[SerializeField] Spawner spawner;
@@ -27,13 +28,13 @@ public class GameFlow : MonoBehaviour {
 	}
 
 	private void Start() {
-		LeanTween.delayedCall(0.5f, spawner.StartWave);
+		DelayedWaveStart(5.0f);
 	}
 
 	public void OnWinWave() {
 		mainText.text = "Волна пройдена!";
 
-		spawner.StartWave();
+		DelayedWaveStart(20.0f);
 	}
 
 	public void OnLoseGame(bool isMothershipDestroyed) {
@@ -81,6 +82,29 @@ public class GameFlow : MonoBehaviour {
 			.setOnComplete(()=> {
 				achievmentText.text = "  ";
 			});
+	}
+
+	void DelayedWaveStart(float time) {
+		StartCoroutine(Routine());
+
+		IEnumerator Routine() {
+			float currTime = time;
+
+			while(currTime >= 0) {
+				currTime -= Time.deltaTime;
+				nextWaveText.text = $"Next wave in {currTime.ToString("0")} seconds";
+				if(currTime <= time / 4) {
+					nextWaveText.color = new Color(1, 0, 0, 1);
+				}
+				yield return null;
+			}
+
+			yield return null;
+			spawner.StartWave();
+
+			nextWaveText.text = $"  ";
+			nextWaveText.color = new Color(1, 0.5803922f, 0, 1);
+		}
 	}
 
 	[System.Serializable]
