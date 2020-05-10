@@ -1774,7 +1774,9 @@ MonoBehaviour:
   sliderParent: {fileID: 1862091459}
   bar: {fileID: 901519774}
   hpTextField: {fileID: 0}
-  damageNumberPrefab: {fileID: 0}
+  overlayImage: {fileID: 0}
+  damageNumberPrefab: {fileID: 5661139921869478130, guid: 253bf04487a6f1646ad49f87bb2ffd84,
+    type: 3}
 --- !u!114 &1589645438
 MonoBehaviour:
   m_ObjectHideFlags: 0

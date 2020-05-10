@@ -5247,7 +5247,8 @@ MonoBehaviour:
   bar: {fileID: 15128282}
   hpTextField: {fileID: 1210680911}
   overlayImage: {fileID: 0}
-  damageNumberPrefab: {fileID: 0}
+  damageNumberPrefab: {fileID: 5661139921869478130, guid: 253bf04487a6f1646ad49f87bb2ffd84,
+    type: 3}
 --- !u!4 &1114721933 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 59f6848c2a24d4746bfec757c77eba42,

@@ -74,7 +74,8 @@ public class Health : MonoBehaviour {
 		float takenDmg = projectile.Damage;
 		currHp -= takenDmg;
 
-		ShowDamageNumber(takenDmg, projectile.transform.position);
+		if(damageNumberPrefab != null)
+			ShowDamageNumber(takenDmg, projectile.IsCritical,projectile.transform.position);
 
 		if (overlayImage) {
 			LeanTween.cancel(overlayImage.gameObject, false);
@@ -112,12 +113,12 @@ public class Health : MonoBehaviour {
 			hpTextField.text = $"{Mathf.RoundToInt(currHp)}/{Mathf.RoundToInt(maxHp)}";
 	}
 
-	GameObject ShowDamageNumber(float damage, Vector3 pos) {
-		//GameObject damageNumber = Instantiate(damageNumberPrefab, pos, Quaternion.identity, parent);
+	GameObject ShowDamageNumber(float damage, bool isCrit, Vector3 pos) {
+		GameObject damageNumber = Instantiate(damageNumberPrefab, pos, Quaternion.identity, null);
 
-		//damageNumber.GetComponent<DamageNumber>().StartSequence(damage, isCrit);
+		damageNumber.GetComponent<DamageNumber>().StartSequence(damage, isCrit);
 
-		return /*damageNumber*/null;
+		return damageNumber;
 	}
 
 	void UpdateHpBar() {
