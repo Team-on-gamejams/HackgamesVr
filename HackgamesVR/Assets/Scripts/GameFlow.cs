@@ -47,8 +47,8 @@ public class GameFlow : MonoBehaviour {
 			return;
 		upgrader.Shuffle();
 
-		mainText.text = "Волна пройдена!\n\n";
-		mainText.text += "Виберіть апгрейд:\n\n";
+		mainText.text = "Wave complete!\n\n";
+		mainText.text += "Select upgrade:\n\n";
 		mainText.text += $"(A){upgrader.data[0].name} - {upgrader.data[0].description}\n\n";
 		mainText.text += $"(B){upgrader.data[1].name} - {upgrader.data[1].description}\n\n";
 		mainText.text += $"(C){upgrader.data[2].name} - {upgrader.data[2].description}\n\n";
@@ -63,12 +63,12 @@ public class GameFlow : MonoBehaviour {
 	public void OnLoseGame(bool isMothershipDestroyed) {
 		mainText.text = "You lose!\n\n";
 		if (isMothershipDestroyed) {
-			mainText.text += "Транспортник знищено, ви наступний";
+			mainText.text += "The mothership is destroyed, you are next";
 		}
 		else {
-			mainText.text += "Ваш корабель знищений і все що залишилося це незкінченно переживати момент своєї смерті";
+			mainText.text += "Your ship is destroyed and all that is left is to endlessly experience the moment of his death";
 		}
-		mainText.text += "\n\nНатистінь 'A' щоб почати гру заново(персональні апгрейди зберігаються)";
+		mainText.text += "\n\nPress 'A' to play again";
 
 		isWaitDeadButton = true;
 		player.isProcessInput = false;
@@ -78,11 +78,11 @@ public class GameFlow : MonoBehaviour {
 		if (isWaitDeadButton)
 			return;
 		mainText.text = "You Win!\n\n";
-		mainText.text += $"Знайдено пасхальних яєць: {openedAchievments}/{textsAchievment.Length + 2}\n";
-		mainText.text += $"Вистреляно лазерів: {playerWeapon.shootedProjectiles}\n";
-		mainText.text += $"Пройдено відстані: {player.movedDist}\n";
-		mainText.text += $"Вбито ворогів: {spawner.killedEnemies}\n";
-		mainText.text += "\n\nНатистінь 'A' щоб почати гру заново(персональні апгрейди зберігаються)";
+		mainText.text += $"Find easter egs: {openedAchievments}/{textsAchievment.Length + 2}\n";
+		mainText.text += $"Lasers fired: {playerWeapon.shootedProjectiles}\n";
+		mainText.text += $"Distance traveled: {(player.movedDist / 1000).ToString("0.00")}km\n";
+		mainText.text += $"Enemies killed: {spawner.killedEnemies}\n";
+		mainText.text += "\n\nPress 'A' to play again";
 
 		TutorialText t = tutorials[currTutorial];
 		objectiveText.text = string.IsNullOrEmpty(t.textObjective) ? "  " : t.textObjective.Replace("\\n", "\n") + spawner.GetProgressStr();

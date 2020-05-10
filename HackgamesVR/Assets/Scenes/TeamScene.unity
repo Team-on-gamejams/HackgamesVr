@@ -2354,15 +2354,42 @@ MonoBehaviour:
     enemiesPrefab:
     - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
     - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
+    delays:
+    - 1
+    - 1
+  - name: Trump
+    enemiesPrefab:
     - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
     - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
     - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
     delays:
     - 1
     - 1
+    - 2
+  - name: Trump
+    enemiesPrefab:
+    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
+    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
+    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
+    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
+    delays:
     - 1
+    - 2
+    - 2
+    - 3
+  - name: Trump
+    enemiesPrefab:
+    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
+    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
+    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
+    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
+    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
+    delays:
     - 1
-    - 1
+    - 2
+    - 3
+    - 4
+    - 5
   currWave: 0
   enemyAppear: {fileID: 8300000, guid: 9fc03a91b5216b74394a6166059d68f2, type: 3}
   spawnPoint: {fileID: 265252479}
@@ -2382,59 +2409,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorials:
-  - textMain: "\u0422\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442\u043D\u0438\u0439
-      \u043A\u043E\u0440\u0430\u0431\u0435\u043B\u044C \u043F\u043E\u0442\u0440\u0430\u043F\u0438\u0432
-      \u0432 \u0437\u0430\u0441\u0430\u0434\u0443 \u043F\u0456\u0440\u0430\u0442\u0456\u0432.\\n\u0417\u0430\u0445\u0438\u0441\u0442\u0456\u0442\u044C
-      \u0439\u043E\u0433\u043E \u0432\u0456\u0434 \u0445\u0432\u0438\u043B\u044C
-      \u0432\u043E\u0440\u043E\u0433\u0456\u0432!\\n\\n \u041D\u0430\u0442\u0438\u0441\u043D\u0456\u0442\u044C
-      'A' \u0449\u043E\u0431 \u043F\u0440\u043E\u0434\u043E\u0432\u0436\u0438\u0442\u0438"
+  - textMain: The transport ship is ambushed by pirates. \n Protect it from enemy
+      waves! \n\n Press 'A' to continue
     textObjective: 
     arrowObj:
     - {fileID: 1281253369}
     toEnable: {fileID: 0}
-  - textMain: "\u0412\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u044C\u043D\u0438\u0439
-      \u0440\u0443\u0445 \u0432\u0438\u043A\u043E\u043D\u0443\u0454\u0442\u044C\u0441\u044F
-      \u0446\u0438\u043C \u0434\u0436\u043E\u0439\u0441\u0442\u0438\u043A\u043E\u043C.
-      \u041F\u043E\u0442\u044F\u043D\u0456\u0442\u044C \u0432\u0456\u0434 \u0441\u0435\u0431\u0435
-      \u0449\u043E\u0431 \u0432\u0437\u043B\u0435\u0442\u0456\u0442\u0438 \\n\\n
-      \u0412\u0437\u043B\u0435\u0442\u0456\u0442\u044C \u0442\u0440\u043E\u0445\u0438
-      \u0432\u0432\u0435\u0440\u0445 \u0442\u0430 \u043D\u0430\u0442\u0438\u0441\u043D\u0456\u0442\u044C
-      'A' \u0449\u043E\u0431 \u043F\u0440\u043E\u0434\u043E\u0432\u0436\u0438\u0442\u0438"
+  - textMain: ' Vertical movement is performed with this joystick. Push to take off
+      \n\n Take off a little and press ''A'' to continue'
     textObjective: 
     arrowObj:
     - {fileID: 1970730520}
     toEnable: {fileID: 973215862}
-  - textMain: "\u0422\u0430\u043D\u0433\u0430\u0436 \u0442\u0430 \u0440\u0438\u0441\u043A\u0430\u043D\u043D\u044F
-      \u0432\u0438\u043A\u043E\u043D\u0443\u044E\u0442\u044C\u0441\u044F \u043A\u0440\u0430\u0439\u043D\u0456\u043C
-      \u043F\u0440\u0430\u0432\u0438\u043C \u0434\u0436\u043E\u0439\u0441\u0442\u0438\u043A\u043E\u043C
-      \\n\\n \u041D\u0430\u0442\u0438\u0441\u043D\u0456\u0442\u044C 'A' \u0449\u043E\u0431
-      \u043F\u0440\u043E\u0434\u043E\u0432\u0436\u0438\u0442\u0438"
+  - textMain: ' Pitch and yaw are performed with the far right joystick  \n \n Press
+      ''A'' to continue'
     textObjective: 
     arrowObj:
     - {fileID: 2034524154}
     toEnable: {fileID: 853242150}
-  - textMain: "\u041A\u0440\u0435\u043D \u0432\u0438\u043A\u043E\u043D\u0443\u0454\u0442\u044C\u0441\u044F
-      \u0446\u0438\u043C \u0434\u0436\u043E\u0439\u0441\u0442\u0438\u043A\u043E\u043C
-      \\n\\n \u041D\u0430\u0442\u0438\u0441\u043D\u0456\u0442\u044C 'A' \u0449\u043E\u0431
-      \u043F\u0440\u043E\u0434\u043E\u0432\u0436\u0438\u0442\u0438"
+  - textMain: Roll with this joystick \n \n Press 'A' to continue
     textObjective: 
     arrowObj:
     - {fileID: 932955970}
     toEnable: {fileID: 766902589}
-  - textMain: "\u0413\u043E\u0440\u0438\u0437\u043E\u043D\u0442\u0430\u043B\u044C\u043D\u0438\u0439
-      \u0440\u0443\u0445 \u0432\u0438\u043A\u043E\u043D\u0443\u0454\u0442\u044C\u0441\u044F
-      \u043A\u0440\u0430\u0439\u043D\u0456\u043C \u043B\u0456\u0432\u0438\u043C \u0434\u0436\u043E\u0439\u0441\u0442\u0438\u043A\u043E\u043C
-      \\n\\n \u041D\u0430\u0442\u0438\u0441\u043D\u0456\u0442\u044C 'A' \u0449\u043E\u0431
-      \u043F\u0440\u043E\u0434\u043E\u0432\u0436\u0438\u0442\u0438"
+  - textMain: ' Horizontal movement performed with the leftmost joystick \n\n Press
+      "A" to view'
     textObjective: 
     arrowObj:
     - {fileID: 932441977}
     toEnable: {fileID: 1117078703}
-  - textMain: "\u041C\u043E\u0436\u043D\u0430 \u0437\u0430\u0444\u0456\u043A\u0441\u0443\u0432\u0430\u0442\u0438
-      \u0434\u0436\u043E\u0439\u0441\u0442\u0438\u043A \u0432 \u0431\u0443\u0434\u044C-\u044F\u043A\u0456\u0439
-      \u043F\u043E\u0437\u0438\u0446\u0456\u0457, \u043D\u0430\u0442\u0438\u0441\u043D\u0443\u0432\u0448\u0438
-      \u0442\u0430\u0447\u043F\u0430\u0434\\n\\n \u041D\u0430\u0442\u0438\u0441\u043D\u0456\u0442\u044C
-      'A' \u0449\u043E\u0431 \u043F\u0440\u043E\u0434\u043E\u0432\u0436\u0438\u0442\u0438"
+  - textMain: ' You can lock the joystick in any position by pressing the touchpad
+      \n \n Press ''A'' to continue'
     textObjective: 
     arrowObj: []
     toEnable: {fileID: 0}
@@ -2449,39 +2454,29 @@ MonoBehaviour:
     - {fileID: 932955970}
     - {fileID: 2034524154}
     toEnable: {fileID: 0}
-  - textMain: "\u041F\u0440\u043E\u0433\u0440\u0435\u0441 \u0437\u0430\u0434\u0430\u0447\u0456
-      \u0431\u0443\u0434\u0435 \u0432\u0456\u0434\u0441\u043B\u0456\u0434\u043A\u043E\u0432\u0443\u0432\u0430\u0442\u0438\u0441\u044F
-      \u0437\u043B\u0456\u0432\u0430\\n\\n<-------\\n\\n \u041D\u0430\u0442\u0438\u0441\u043D\u0456\u0442\u044C
-      'A' \u0449\u043E\u0431 \u043F\u0440\u043E\u0434\u043E\u0432\u0436\u0438\u0442\u0438"
+  - textMain: The progress of the task will be monitored on the left \n \n <-------
+      \n \n Press 'A' to continue
     textObjective: 
     arrowObj: []
     toEnable: {fileID: 0}
   - textMain: 
-    textObjective: "\u0417\u043D\u0438\u0449\u0456\u0442\u044C 3 \u0430\u0441\u0442\u0435\u0440\u043E\u0457\u0434\u0438,
-      \\n\u0449\u043E\u0431 \u043F\u0440\u043E\u0434\u043E\u0432\u0436\u0438\u0442\u0438"
+    textObjective: Destroy 3 asteroids \n to continue
     arrowObj: []
     toEnable: {fileID: 0}
   - textMain: 
-    textObjective: "\u0417\u0430\u0445\u0438\u0449\u0430\u0439\u0442\u0435 \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442
-      \u0432\u0456\u0434 \u043F\u0456\u0440\u0430\u0442\u0456\u0432\\n"
+    textObjective: Protect mothership from pirates
     arrowObj: []
     toEnable: {fileID: 0}
   textsAchievment:
-  - textTitle: "\u041F\u0430\u0441\u0445\u0430\u043B\u044C\u043D\u0435 \u044F\u0439\u0446\u0435
-      \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E! (1)"
-    name: "'\u041E\u0433\u043B\u044F\u043D\u0438\u0441\u044C'"
-    description: "\u041F\u0438\u0443-\u043F\u0438\u0443, \u0434\u0430 \u0446\u0435\u0439
-      \u043F\u0438\u0441\u0442\u043E\u043B\u0435\u0442 \u043A\u0440\u0443\u0447\u0435
-      \u043A\u043E\u0440\u0430\u0431\u0435\u043B\u044C\u043D\u043E\u0439 \u043F\u0443\u0448\u043A\u0438!"
-  - textTitle: "\u041F\u0430\u0441\u0445\u0430\u043B\u044C\u043D\u0435 \u044F\u0439\u0446\u0435
-      \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E! (2)"
-    name: "'\u0426\u0435\u0439 \u0437\u0432\u0443\u043A'"
-    description: "\u0417\u0430 \u043E\u0441\u043E\u0431\u043E \u0441\u0442\u0438\u043B\u044C\u043D\u0435
-      \u0443\u043D\u0438\u0447\u0442\u043E\u0436\u0435\u043D\u0438\u0435 \u0430\u0441\u0442\u0435\u0440\u043E\u0457\u0434\u0430"
-  - textTitle: "\u041F\u0430\u0441\u0445\u0430\u043B\u044C\u043D\u0435 \u044F\u0439\u0446\u0435
-      \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E! (3)"
-    name: "'\u0422\u0440\u0430\u043D\u0436\u0438\u0440\u0430'"
-    description: 
+  - textTitle: FInd easter egg! (1)
+    name: '''Look around'''
+    description: Piu-piu, this pistol is cooler than a ship's cannon!
+  - textTitle: FInd easter egg! (2)
+    name: '''That sound'''
+    description: For a stylish destruction of an asteroid
+  - textTitle: FInd easter egg! (3)
+    name: '''Fool'''
+    description: Spend the upgrade for nothing
   buttonClickSound: {fileID: 8300000, guid: efb5f1b0875bbc7408e2352c2367f89a, type: 3}
   onUnlockAchievment: {fileID: 8300000, guid: f8cab9ed881c12249b7c8b4795964bdd, type: 3}
   mainText: {fileID: 1687509963}
@@ -2506,36 +2501,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
   - type: 1
-    name: "\u041F\u043E\u043A\u0440\u0430\u0449\u0435\u043D\u043D\u044F \u0434\u0432\u0438\u0433\u0443\u043D\u0456\u0432"
-    description: "+ 20 \u043C/\u0441 \u0434\u043E \u0448\u0432\u0438\u0434\u043A\u043E\u0441\u0442\u0456
-      \u0440\u043E\u0437\u0433\u043E\u043D\u0443 \u0442\u0430 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0457
-      \u0448\u0432\u0438\u0434\u043A\u043E\u0441\u0442\u0456"
+    name: Engine upgrade
+    description: +20 m/s to the speed limit and the maximum speed
   - type: 2
-    name: "\u0421\u0438\u043B\u044C\u043D\u0456 \u043B\u0430\u0437\u0435\u0440\u0438"
-    description: "+5 \u0434\u043E \u0434\u0430\u043C\u0430\u0433\u0430"
+    name: Powerful lasers
+    description: ' +5 to damage'
   - type: 3
-    name: "\u0428\u0432\u0438\u0434\u043A\u0456 \u043B\u0430\u0437\u0435\u0440\u0438"
-    description: "+25% \u0434\u043E \u0448\u0432\u0438\u0434\u043E\u043A\u0441\u0442\u0456
-      \u043F\u043E\u043B\u044C\u043E\u0442\u0443 \u043B\u0430\u0437\u0435\u0440\u0456\u0432"
+    name: Fast lasers
+    description: +25% to lasers speed
   - type: 4
-    name: "\u041D\u043E\u0432\u0430 \u043E\u0431\u043E\u0439\u043C\u0430"
-    description: "+10 \u0434\u043E \u0440\u043E\u0437\u043C\u0456\u0440\u0443 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0443.
-      - 1 \u0441\u0435\u043A \u0434\u043E \u0448\u0432\u0438\u0434\u043A\u043E\u0441\u0442\u0456
-      \u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0438"
+    name: Eco lasers
+    description: ' +10 to clip size. - 1 sec to reloading time'
   - type: 5
-    name: "\u0420\u0435\u043C\u043E\u043D\u0442\u043D\u0456 \u0440\u043E\u0431\u043E\u0442\u0438(\u0433\u0440\u0430\u0432\u0435\u0446\u044C)"
-    description: "+100 \u0434\u043E \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0433\u043E
-      \u0425\u041F."
+    name: Body improvement(Player)
+    description: +100 to max hp & full heal
   - type: 6
-    name: "\u0420\u0435\u043C\u043E\u043D\u0442\u043D\u0456 \u0440\u043E\u0431\u043E\u0442\u0438(\u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442)"
-    description: "+1000 \u0434\u043E \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0433\u043E
-      \u0425\u041F."
+    name: Body improvement(Mothership)
+    description: +1000 to max hp & full heal
   - type: 7
-    name: "\u0421\u0435\u043A\u0440\u0435\u0442\u043D\u0438\u0439 \u0430\u043F\u0433\u0440\u0435\u0439\u0434"
-    description: "\u041D\u0435 \u0434\u0430\u0454 \u0447\u0438\u0441\u043B\u043E\u0432\u0438\u0445
-      \u0431\u043E\u043D\u0443\u0441\u0456\u0432, \u0430\u043B\u0435 \u0432\u0456\u0434\u043A\u0440\u0438\u0432\u0430\u0454
-      \u0448\u043B\u044F\u0445 \u0434\u043E 3 \u043F\u0430\u0441\u0445\u0430\u043B\u044C\u043D\u043E\u0433\u043E
-      \u044F\u0439\u0446\u044F"
+    name: Secret upgrade
+    description: Gives you third achievment
   playerShip: {fileID: 1902724041}
   playerWeapon: {fileID: 1902724042}
   playerHp: {fileID: 1902724043}
@@ -12404,49 +12389,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 855526504}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1025016837
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1025016839}
-  - component: {fileID: 1025016838}
-  m_Layer: 0
-  m_Name: ~LeanTween
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!114 &1025016838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025016837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c2f4b27196f84954b44753aaac214bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1025016839
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025016837}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1027133458
 GameObject:
   m_ObjectHideFlags: 0
@@ -13723,18 +13665,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148211748}
-  m_LocalRotation: {x: -0, y: -0.14561155, z: -0, w: 0.98934186}
-  m_LocalPosition: {x: 0, y: 0, z: -37}
+  m_LocalRotation: {x: -0, y: -0.0793181, z: -0, w: 0.99684936}
+  m_LocalPosition: {x: 0, y: 0, z: -58.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 342868977}
   - {fileID: 730767154}
   m_Father: {fileID: 823811810}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -16.745, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.099, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -123, y: -35.7}
+  m_AnchoredPosition: {x: -110.3, y: -35.7}
   m_SizeDelta: {x: -350.89, y: 427.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1148211750
@@ -16307,18 +16249,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317234053}
-  m_LocalRotation: {x: -0.015850717, y: -0.01993712, z: 0.02656526, w: 0.99932253}
-  m_LocalPosition: {x: 0, y: 0, z: -103.7}
+  m_LocalRotation: {x: -0.012529886, y: -0.13134636, z: 0.020790655, w: 0.9910393}
+  m_LocalPosition: {x: 0, y: 0, z: -73.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1458651831}
   - {fileID: 1179737918}
   m_Father: {fileID: 1455189583}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -1.7550001, y: -2.3330002, z: 3.081}
+  m_LocalEulerAnglesHint: {x: -1.11, y: -15.124001, z: 2.551}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -342.5, y: -24.4}
+  m_AnchoredPosition: {x: -356.1, y: -91.1}
   m_SizeDelta: {x: -350.89, y: 427.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1317234055

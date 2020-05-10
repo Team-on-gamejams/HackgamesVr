@@ -59,6 +59,10 @@ public class PlayerShip : MonoBehaviour {
 		engineSource.transform.SetParent(this.transform);
 	}
 
+	private void OnDestroy() {
+			LeanTween.cancel(engineSource.gameObject, false);
+	}
+
 	void Update() {
 		if (!isProcessInput)
 			return;
@@ -86,14 +90,14 @@ public class PlayerShip : MonoBehaviour {
 
 		if(maxMagn != 0.0) {
 			LeanTween.cancel(engineSource.gameObject, false);
-			LeanTween.value(engineSource.volume, maxMagn / 1.42f, 0.2f)
+			LeanTween.value(engineSource.gameObject, engineSource.volume, maxMagn / 1.42f, 0.2f)
 				.setOnUpdate((float v) => {
 					engineSource.volume = v;
 				});
 		}
 		else {
 			LeanTween.cancel(engineSource.gameObject, false);
-			LeanTween.value(engineSource.volume, 0.0f, 0.2f)
+			LeanTween.value(engineSource.gameObject, engineSource.volume, 0.0f, 0.2f)
 				.setOnUpdate((float v) => {
 					engineSource.volume = v;
 				});
