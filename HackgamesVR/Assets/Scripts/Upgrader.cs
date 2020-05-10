@@ -6,7 +6,7 @@ public class Upgrader : MonoBehaviour {
 	public enum UpgradeType : byte { None, Engine, WeaponDmg, WeaponSpeed, WeaponReload, PlayerHp, MothershipHp, SecretOpener, LastUp}
 
 	[Header("Data")] [Space]
-	[SerializeField] UpgradeData[] data;
+	public UpgradeData[] data;
 
 	[Header("refs")] [Space]
 	[SerializeField] PlayerShip playerShip;
@@ -14,6 +14,10 @@ public class Upgrader : MonoBehaviour {
 	[SerializeField] Health playerHp;
 	[Space]
 	[SerializeField] Health motherShipHp;
+
+	public void Shuffle() {
+		data.Shuffle();
+	}
 
 	public void ApplyUpgrade(UpgradeType type) {
 		switch (type) {

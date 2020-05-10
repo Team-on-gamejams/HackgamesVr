@@ -20,6 +20,7 @@ public class GameFlow : MonoBehaviour {
 	[SerializeField] Spawner spawner;
 	[SerializeField] Upgrader upgrader;
 	bool isWaitDeadButton = false;
+	bool isWaitForUpgrade = false;
 
 	byte openedAchievments = 0;
 
@@ -28,11 +29,19 @@ public class GameFlow : MonoBehaviour {
 	}
 
 	private void Start() {
+		nextWaveText.text = "  ";
 		DelayedWaveStart(5.0f);
 	}
 
 	public void OnWinWave() {
-		mainText.text = "Волна пройдена!";
+		upgrader.Shuffle();
+
+		mainText.text = "Волна пройдена!\n\n";
+		mainText.text += "Виберіть апгрейд:\n\n";
+		mainText.text += $"(A){upgrader.data[0].name} - {upgrader.data[0].description}\n\n";
+		mainText.text += $"(B){upgrader.data[1].name} - {upgrader.data[1].description}\n\n";
+		mainText.text += $"(C){upgrader.data[2].name} - {upgrader.data[2].description}\n\n";
+		isWaitForUpgrade = true;
 
 		DelayedWaveStart(20.0f);
 	}
@@ -67,6 +76,12 @@ public class GameFlow : MonoBehaviour {
 			Destroy(player.gameObject);
 			SceneManager.LoadScene(0);
 			return;
+		}
+
+		if (isWaitForUpgrade) {
+			upgrader.ApplyUpgrade(upgrader.data[id].type);
+			mainText.text = "  ";
+			isWaitForUpgrade = false;
 		}
 	}
 

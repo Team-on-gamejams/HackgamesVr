@@ -37,15 +37,6 @@
       "requirement": "optional"
     },
     {
-      "name": "/actions/default/in/SnapTurnLeft",
-      "type": "boolean",
-      "requirement": "suggested"
-    },
-    {
-      "name": "/actions/default/in/SnapTurnRight",
-      "type": "boolean"
-    },
-    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -154,8 +145,6 @@
       "/actions/default/in/SkeletonLeftHand": "Skeleton (Left)",
       "/actions/default/in/SkeletonRightHand": "Skeleton (Right)",
       "/actions/default/out/Haptic": "Haptic",
-      "/actions/default/in/SnapTurnLeft": "Snap Turn (Left)",
-      "/actions/default/in/SnapTurnRight": "Snap Turn (Right)",
       "/actions/RightJoystick/in/Shoot": "Shoot",
       "/actions/RightJoystick/in/Lock": "Lock",
       "/actions/LeftJoystick/in/Lock": "Lock",

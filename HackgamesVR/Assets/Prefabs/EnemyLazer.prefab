@@ -1789,12 +1789,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407e625fce365af48ac29014c7434aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloads: 0
+  shootedProjectiles: 0
   IsShooting: 0
   projectilePrefab: {fileID: 4550458954326902550, guid: 0125b2e99bbae0f4e80b1e8ea6ceaa74,
     type: 3}
   shootPos:
   - {fileID: 1960910915}
-  shootingCooldown: 0.15
+  shootingCooldown: 0.35
   clipSize: 10
   reloadTime: 1.5
   isNeedUI: 0

@@ -1105,11 +1105,7 @@ MonoBehaviour:
   - name: Obama
     enemiesPrefab:
     - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
-    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
-    - {fileID: 2134386185777203478, guid: 234353f8c5d0c8d4a98adf2bba21d876, type: 3}
     delays:
-    - 1
-    - 1
     - 1
   - name: Trump
     enemiesPrefab:
@@ -3863,8 +3859,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: {fileID: 766902593}
   xOffset: 45
-  shootAction:
-    actionPath: /actions/LeftJoystick/in/Lock
+  lockAction:
+    actionPath: /actions/RightJoystick/in/Lock
     needsReinit: 0
 --- !u!114 &766902593
 MonoBehaviour:
@@ -4447,8 +4443,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: {fileID: 853242154}
   xOffset: 45
-  shootAction:
-    actionPath: /actions/LeftJoystick/in/Lock
+  lockAction:
+    actionPath: /actions/RightJoystick/in/Lock
     needsReinit: 0
 --- !u!114 &853242154
 MonoBehaviour:
@@ -5626,7 +5622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: {fileID: 973215866}
   xOffset: 45
-  shootAction:
+  lockAction:
     actionPath: /actions/LeftJoystick/in/Lock
     needsReinit: 0
 --- !u!114 &973215866
@@ -6408,7 +6404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: {fileID: 1117078707}
   xOffset: 45
-  shootAction:
+  lockAction:
     actionPath: /actions/LeftJoystick/in/Lock
     needsReinit: 0
 --- !u!114 &1117078707
@@ -14750,7 +14746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4:20
+  m_text: 4:20 AM
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14819,10 +14815,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2051124653}
-    characterCount: 4
+    characterCount: 7
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 2
+    spaceCount: 1
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
