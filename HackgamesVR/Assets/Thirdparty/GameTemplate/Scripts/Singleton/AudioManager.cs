@@ -154,7 +154,7 @@ public class AudioManager : Singleton<AudioManager> {
 	AudioSource CreatePlaySource(AudioClip clip, Transform emitter, float volume, float pitch, AudioChannel channel) {
 		GameObject go = new GameObject("Audio: " + clip.name);
 		go.transform.position = emitter.position;
-		go.transform.parent = emitter;
+		go.transform.parent = emitter.parent;
 
 		AudioSource source = AddAudioSource(go, clip, volume, pitch, channel);
 

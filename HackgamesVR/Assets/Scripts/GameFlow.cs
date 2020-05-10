@@ -11,6 +11,10 @@ public class GameFlow : MonoBehaviour {
 	[SerializeField] TutorialText[] tutorials;
 	[SerializeField] AchievmentText[] textsAchievment;
 
+	[Header("Audio")] [Space]
+	[SerializeField] AudioClip buttonClickSound;
+	[SerializeField] AudioClip onUnlockAchievment;
+
 	[Header("Refs")] [Space]
 	[SerializeField] TextMeshProUGUI mainText;
 	[SerializeField] TextMeshProUGUI achievmentText;
@@ -96,6 +100,7 @@ public class GameFlow : MonoBehaviour {
 		if(id == 0 && currTutorial <= 7) {
 			++currTutorial;
 			ProcessTutorial();
+			AudioManager.Instance.Play(buttonClickSound, player.transform, channel: AudioManager.AudioChannel.Sound);
 			return;
 		}
 
@@ -103,11 +108,13 @@ public class GameFlow : MonoBehaviour {
 			upgrader.ApplyUpgrade(upgrader.data[id].type);
 			mainText.text = "  ";
 			isWaitForUpgrade = false;
+			AudioManager.Instance.Play(buttonClickSound, player.transform, channel: AudioManager.AudioChannel.Sound);
 			return;
 		}
 	}
 
 	public void UnlockAchievment(int id) {
+		AudioManager.Instance.Play(onUnlockAchievment, player.transform, channel: AudioManager.AudioChannel.Sound);
 		++openedAchievments;
 		AchievmentText t = textsAchievment[id];
 
@@ -127,6 +134,11 @@ public class GameFlow : MonoBehaviour {
 				foreach (var arrow in tutorials[currTutorial].arrowObj)
 					arrow.gameObject.SetActive(false);
 			}
+
+			for (; currTutorial < 8; ++currTutorial)
+				if(tutorials[currTutorial].toEnable)
+					tutorials[currTutorial].toEnable.SetActive(true);
+
 			currTutorial = 8;
 			ProcessTutorial();
 		}

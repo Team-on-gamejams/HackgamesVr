@@ -21,6 +21,7 @@ public class Health : MonoBehaviour {
 
 	[Space]
 	[SerializeField] GameObject damageNumberPrefab = null;  //TODO: poll this instead of spawning
+	[SerializeField] AudioClip getDmgSound = null;
 
 #if UNITY_EDITOR
 	private void OnValidate() {
@@ -74,6 +75,9 @@ public class Health : MonoBehaviour {
 
 		float takenDmg = projectile.Damage;
 		currHp -= takenDmg;
+
+		if (getDmgSound != null)
+			AudioManager.Instance.Play(getDmgSound, transform.position);
 
 		if(damageNumberPrefab != null)
 			ShowDamageNumber(takenDmg, projectile.IsCritical,projectile.transform.position);

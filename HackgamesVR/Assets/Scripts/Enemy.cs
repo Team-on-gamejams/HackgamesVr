@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour {
 	public Action onDie;
 
 	[SerializeField] Rigidbody rb;
+	[SerializeField] AudioClip dieSound;
 
 	public float speed = 100f;
 	public float rotateSpeed = 10f;
@@ -124,6 +125,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Die() {
+		AudioManager.Instance.Play(dieSound, transform, channel: AudioManager.AudioChannel.Sound);
 		Destroy(gameObject);
 		onDie?.Invoke();
 	}

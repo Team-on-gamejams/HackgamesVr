@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 3167409079010114372}
   - component: {fileID: 3167409079010114371}
   - component: {fileID: 3167409079010114370}
+  - component: {fileID: 1748747630}
   m_Layer: 0
   m_Name: RandomMeteor
   m_TagString: Untagged
@@ -182,6 +183,9 @@ MonoBehaviour:
   - {fileID: 2257602796243155623, guid: 10393ec8c871e0041b1a6a351f5b958d, type: 3}
   - {fileID: 398418478161388476, guid: 09cd06dd6753e484fbff0273f2534154, type: 3}
   - {fileID: 4173523821398556068, guid: 0c2f74dafa0c4584c93e4e79461fdf0d, type: 3}
+  dieSound: {fileID: 8300000, guid: 8a4712a3992e3e54893c3f881cc911ed, type: 3}
+  dieSoundRare: {fileID: 8300000, guid: f91abed3a538a2a4dbc1675a85313ceb, type: 3}
+  unlocker: {fileID: 1748747630}
 --- !u!114 &3167409079010114370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +207,19 @@ MonoBehaviour:
   overlayImage: {fileID: 0}
   damageNumberPrefab: {fileID: 5661139921869478130, guid: 253bf04487a6f1646ad49f87bb2ffd84,
     type: 3}
+--- !u!114 &1748747630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3167409079010114374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ec81c4a63535048965ef84cd67770f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 1
 --- !u!1 &3167409079060918718
 GameObject:
   m_ObjectHideFlags: 0

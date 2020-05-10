@@ -1749,6 +1749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1589645436}
+  dieSound: {fileID: 8300000, guid: be016e70580e91c4f8a8f9e7701b00d4, type: 3}
   speed: 60
   rotateSpeed: 0.5
   maxRadius: 100
@@ -1777,6 +1778,7 @@ MonoBehaviour:
   overlayImage: {fileID: 0}
   damageNumberPrefab: {fileID: 5661139921869478130, guid: 253bf04487a6f1646ad49f87bb2ffd84,
     type: 3}
+  getDmgSound: {fileID: 8300000, guid: 2db7dd2b185b2b040a9f404b797c889f, type: 3}
 --- !u!114 &1589645438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1802,6 +1804,7 @@ MonoBehaviour:
   isNeedUI: 0
   clipTextField: {fileID: 0}
   reloadTextField: {fileID: 0}
+  shootClip: {fileID: 8300000, guid: 70f0501f0851c5b489149bdecf2c3791, type: 3}
   parentPb: {fileID: 1589645436}
 --- !u!1001 &7980152019347247135
 PrefabInstance:

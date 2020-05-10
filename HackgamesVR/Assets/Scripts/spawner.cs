@@ -10,6 +10,9 @@ public class Spawner : MonoBehaviour {
 	[SerializeField] Wave[] waves = null;
 	[SerializeField] int currWave = 0;
 
+	[Header("Audio")] [Space]
+	[SerializeField] AudioClip enemyAppear = null;
+
 	[Header("Refs")] [Space]
 	[SerializeField] Transform spawnPoint;
 	[SerializeField] Transform player;
@@ -63,6 +66,7 @@ public class Spawner : MonoBehaviour {
 		enemy.mothership = mothership;
 		enemy.player = player;
 		enemy.onDie += OnEnemyDie;
+		AudioManager.Instance.Play(enemyAppear, enemy.transform, channel: AudioManager.AudioChannel.Sound);
 	}
 
 	void OnEnemyDie() {

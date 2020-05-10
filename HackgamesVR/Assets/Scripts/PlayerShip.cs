@@ -22,6 +22,10 @@ public class PlayerShip : MonoBehaviour {
 	[SerializeField] ShipJoystick right2Joystick;
 	[SerializeField] SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("RightJoystick", "Shoot");
 
+	[Header("Audio")] [Space]
+	[SerializeField] AudioClip engineClip;
+	AudioSource engineSource;
+
 	[Header("Particles")] [Space]
 	[SerializeField] TrailRenderer[] trailsForward;
 	[SerializeField] TrailRenderer[] trailsBack;
@@ -49,6 +53,12 @@ public class PlayerShip : MonoBehaviour {
 		Application.targetFrameRate = 60;
 	}
 
+	private void Start() {
+		engineSource = AudioManager.Instance.PlayLoop(engineClip, transform);
+		engineSource.volume = 0.0f;
+		engineSource.transform.SetParent(this.transform);
+	}
+
 	void Update() {
 		if (!isProcessInput)
 			return;
@@ -70,6 +80,23 @@ public class PlayerShip : MonoBehaviour {
 				trail.emitting = left1Value.x <= 0.0f;
 			foreach (var trail in trailsBack)
 				trail.emitting = left1Value.x > 0.0f;
+		}
+
+		float maxMagn = Mathf.Max(left1Value.magnitude, left2Value.magnitude, right1Value.magnitude, right2Value.magnitude);
+
+		if(maxMagn != 0.0) {
+			LeanTween.cancel(engineSource.gameObject, false);
+			LeanTween.value(engineSource.volume, maxMagn / 1.42f, 0.2f)
+				.setOnUpdate((float v) => {
+					engineSource.volume = v;
+				});
+		}
+		else {
+			LeanTween.cancel(engineSource.gameObject, false);
+			LeanTween.value(engineSource.volume, 0.0f, 0.2f)
+				.setOnUpdate((float v) => {
+					engineSource.volume = v;
+				});
 		}
 
 		//if(Mathf.Abs(left1Value.y) >= 0.45f && Mathf.Abs(right1Value.y) >= 0.45f && Mathf.Sign(left1Value.y) == Mathf.Sign(right1Value.y)) {

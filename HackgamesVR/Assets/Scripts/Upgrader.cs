@@ -39,6 +39,9 @@ public class Upgrader : MonoBehaviour {
 			case UpgradeType.MothershipHp:
 				motherShipHp.ApplyHpUpgrade(1000.0f);
 				break;
+			case UpgradeType.SecretOpener:
+				GameFlow.instance.UnlockAchievment(2);
+				break;
 		}
 	}
 }

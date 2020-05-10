@@ -28,6 +28,7 @@ public class Weapon : MonoBehaviour {
 
 	[Header("Refs")]
 	[Space]
+	[SerializeField] AudioClip shootClip = null;
 	[SerializeField] Rigidbody parentPb = null;
 
 	float currShootingCooldown = 0;
@@ -161,6 +162,8 @@ public class Weapon : MonoBehaviour {
 		//}
 		currProjectile.transform.rotation = transform.rotation;
 		currProjectile.Shoot(parentPb.velocity);
+
+		AudioManager.Instance.Play(shootClip);
 
 		if (++currShootPos >= shootPos.Length)
 			currShootPos = 0;
