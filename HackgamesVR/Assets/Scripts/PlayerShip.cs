@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 #if VR_VERSION
 using Valve.VR;
 using Valve.VR.InteractionSystem;
@@ -22,9 +23,6 @@ public class PlayerShip : MonoBehaviour {
 	[SerializeField] ShipJoystick left2Joystick;
 	[SerializeField] ShipJoystick right1Joystick;
 	[SerializeField] ShipJoystick right2Joystick;
-#if VR_VERSION
-	[SerializeField] SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("RightJoystick", "Shoot");
-#endif
 
 	[Header("Audio")] [Space]
 	[SerializeField] AudioClip engineClip;
@@ -61,10 +59,13 @@ public class PlayerShip : MonoBehaviour {
 		engineSource = AudioManager.Instance.PlayLoop(engineClip, transform);
 		engineSource.volume = 0.0f;
 		engineSource.transform.SetParent(this.transform);
+
+		right1Joystick.OnTriggerPress += OnShootTriggerPress;
+		right1Joystick.OnTriggerRelease += OnShootTriggerRelease;
 	}
 
 	private void OnDestroy() {
-			LeanTween.cancel(engineSource.gameObject, false);
+		LeanTween.cancel(engineSource.gameObject, false);
 	}
 
 	void Update() {
@@ -123,20 +124,6 @@ public class PlayerShip : MonoBehaviour {
 
 		speedTextField.text = "Speed: " + rb.velocity.magnitude.ToString("0") + "m/s";
 		timeTextField.text = DateTime.Now.ToShortTimeString();
-
-		//TODO: read on joystick
-#if VR_VERSION
-		Interactable shootInteractable = right1Joystick.interactable;
-		if(shootInteractable == null || !shootInteractable.attachedToHand)
-			shootInteractable = right2Joystick.interactable;
-		if (shootInteractable != null && shootInteractable.attachedToHand) {
-			SteamVR_Input_Sources hand = shootInteractable.attachedToHand.handType;
-			playerWeapon.IsShooting = shootAction[hand].state;
-		}
-		else {
-			playerWeapon.IsShooting = false;
-		}
-#endif
 	}
 
 	public void ApplyEngineUpgrade(float _moveSpeed) {
@@ -145,5 +132,13 @@ public class PlayerShip : MonoBehaviour {
 
 	void Die() {
 		GameFlow.instance.OnLoseGame(false);
+	}
+
+	void OnShootTriggerPress() {
+		playerWeapon.IsShooting = true;
+	}
+
+	void OnShootTriggerRelease() {
+		playerWeapon.IsShooting = false;
 	}
 }

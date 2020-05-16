@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 #if VR_VERSION
 using Valve.VR;
@@ -9,15 +10,26 @@ using Valve.VR.InteractionSystem;
 #endif
 
 public class ShipJoystick : MonoBehaviour {
+	public Action OnTriggerPress;
+	public Action OnTriggerRelease;
+
 #if VR_VERSION
+	[Header("VR controls")] [Space]
 	public Interactable interactable;
+
 	[SerializeField] SteamVR_Action_Boolean lockAction;
-	private Hand handHoverLocked = null;
+	[SerializeField] SteamVR_Action_Boolean triggerAction;
+
+	Hand handHoverLocked = null;
+	bool driving;
+#else
+	[Header("Keyboard controls")] [Space]
+	[SerializeField] string axisX = "";
+	[SerializeField] string axisY = "";
+	[SerializeField] string axisTrigger = "";
 #endif
 
 	[SerializeField] float xOffset = 45.0f;
-
-	private bool driving = false;
 
 	Vector3 bounds1 = new Vector3(-90, 0, -90);
 	Vector3 bounds2 = new Vector3(0, 0, 90);
@@ -42,9 +54,47 @@ public class ShipJoystick : MonoBehaviour {
 #endif
 	}
 
+	private void Update() {
+#if VR_VERSION
+		if (interactable != null && interactable.attachedToHand) {
+			SteamVR_Input_Sources hand = interactable.attachedToHand.handType;
+			if (triggerAction[hand].state) {
+				//TODO: call OnTriggerPress only 1 time
+				OnTriggerPress?.Invoke();
+			}
+			else {
+				OnTriggerRelease?.Invoke();
+			}
+		}
+		else {
+			OnTriggerRelease?.Invoke();
+		}
+#else
+		if(axisTrigger != "") {
+			if (Input.GetAxisRaw(axisTrigger) >= 0.5f) {
+				//TODO: call OnTriggerPress only 1 time
+				OnTriggerPress?.Invoke();
+			}
+			else {
+				OnTriggerRelease?.Invoke();
+			}
+		}
+#endif
+	}
+
 	public Vector2 GetValue() {
-		//TODO: read axis
+		if (!isActiveAndEnabled)
+			return value;
+
+#if VR_VERSION
 		return value;
+#else
+		if (axisX != "")
+			value.x = Input.GetAxisRaw(axisX);
+		if (axisY != "")
+			value.y = Input.GetAxisRaw(axisY);
+		return value;
+#endif
 	}
 
 #if VR_VERSION
@@ -54,7 +104,7 @@ public class ShipJoystick : MonoBehaviour {
 			nCount = Mathf.Clamp(nCount, 1, 10);
 
 			for (ushort i = 0; i < nCount; ++i) {
-				ushort duration = (ushort)Random.Range(100, nRangeMax);
+				ushort duration = (ushort)UnityEngine.Random.Range(100, nRangeMax);
 				hand.TriggerHapticPulse(duration);
 				yield return new WaitForSeconds(.01f);
 			}

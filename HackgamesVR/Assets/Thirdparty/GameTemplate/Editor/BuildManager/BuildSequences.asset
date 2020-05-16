@@ -13,222 +13,44 @@ MonoBehaviour:
   m_Name: BuildSequences
   m_EditorClassIdentifier: 
   sequences:
-  - editorName: Local
-    itchGameLink: 
+  - editorName: VR test
+    itchGameLink: teamon/space-fighter-trainer
     builds:
     - outputRoot: Builds/
       middlePath: $NAME_$VERSION_$PLATFORM/$NAME_$VERSION/$NAME$EXECUTABLE
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
-      targetGroup: 1
-      target: 5
-      options: 0
-      needZip: 0
-      compressDirPath: 
-      needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
-      itchLastChangelogUpdateName: 
-      useGithubActions: 0
-      useUnityActions: 0
-      needGamejolthPush: 0
-      needSteamPush: 0
-      needGoogleDricePush: 0
-    - outputRoot: Builds/
-      middlePath: $NAME_$VERSION_$PLATFORM/$NAME_$VERSION/$NAME$EXECUTABLE
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
+      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;UNITY_CCU;CURVEDUI_STEAMVR_INT;CURVEDUI_TMP;VR_VERSION
       targetGroup: 1
       target: 19
-      options: 0
-      needZip: 0
-      compressDirPath: 
-      needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
-      itchLastChangelogUpdateName: 
-      useGithubActions: 0
-      useUnityActions: 0
-      needGamejolthPush: 0
-      needSteamPush: 0
-      needGoogleDricePush: 0
-    - outputRoot: Builds/
-      middlePath: $NAME_$VERSION_$PLATFORM/$NAME_$VERSION/$NAME$EXECUTABLE
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
-      targetGroup: 1
-      target: 24
-      options: 0
-      needZip: 0
-      compressDirPath: 
-      needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
-      itchLastChangelogUpdateName: 
-      useGithubActions: 0
-      useUnityActions: 0
-      needGamejolthPush: 0
-      needSteamPush: 0
-      needGoogleDricePush: 0
-    - outputRoot: Builds/
-      middlePath: $NAME_$VERSION_$PLATFORM/$NAME_$VERSION/$NAME$EXECUTABLE
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
-      targetGroup: 1
-      target: 2
-      options: 0
-      needZip: 0
-      compressDirPath: 
-      needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
-      itchLastChangelogUpdateName: 
-      useGithubActions: 0
-      useUnityActions: 0
-      needGamejolthPush: 0
-      needSteamPush: 0
-      needGoogleDricePush: 0
-    - outputRoot: Builds/
-      middlePath: $NAME_$VERSION_$PLATFORM/
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
-      targetGroup: 13
-      target: 20
       options: 8
+      isVirtualRealitySupported: 1
       needZip: 0
-      compressDirPath: 
+      compressDirPath: $NAME_$VERSION_$PLATFORM
       needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
+      itchChannel: windows-VR
+      itchDirPath: $NAME_$VERSION_$PLATFORM
+      itchAddLastChangelogUpdateNameToVerison: 1
       itchLastChangelogUpdateName: 
       useGithubActions: 0
       useUnityActions: 0
       needGamejolthPush: 0
       needSteamPush: 0
       needGoogleDricePush: 0
-    - outputRoot: Builds/
-      middlePath: $NAME_$VERSION_$PLATFORM$EXECUTABLE
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
-      targetGroup: 7
-      target: 13
-      options: 8
-      needZip: 0
-      compressDirPath: 
-      needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
-      itchLastChangelogUpdateName: 
-      useGithubActions: 0
-      useUnityActions: 0
-      needGamejolthPush: 0
-      needSteamPush: 0
-      needGoogleDricePush: 0
-  - editorName: Local + Zip
-    itchGameLink: 
+  - editorName: Not VR test
+    itchGameLink: teamon/space-fighter-trainer
     builds:
     - outputRoot: Builds/
       middlePath: $NAME_$VERSION_$PLATFORM/$NAME_$VERSION/$NAME$EXECUTABLE
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
-      targetGroup: 1
-      target: 5
-      options: 0
-      needZip: 1
-      compressDirPath: $NAME_$VERSION_$PLATFORM
-      needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
-      itchLastChangelogUpdateName: 
-      useGithubActions: 0
-      useUnityActions: 0
-      needGamejolthPush: 0
-      needSteamPush: 0
-      needGoogleDricePush: 0
-    - outputRoot: Builds/
-      middlePath: $NAME_$VERSION_$PLATFORM/$NAME_$VERSION/$NAME$EXECUTABLE
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
+      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;UNITY_CCU;CURVEDUI_STEAMVR_INT;CURVEDUI_TMP
       targetGroup: 1
       target: 19
-      options: 0
-      needZip: 1
-      compressDirPath: $NAME_$VERSION_$PLATFORM
-      needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
-      itchLastChangelogUpdateName: 
-      useGithubActions: 0
-      useUnityActions: 0
-      needGamejolthPush: 0
-      needSteamPush: 0
-      needGoogleDricePush: 0
-    - outputRoot: Builds/
-      middlePath: $NAME_$VERSION_$PLATFORM/$NAME_$VERSION/$NAME$EXECUTABLE
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
-      targetGroup: 1
-      target: 24
-      options: 0
-      needZip: 1
-      compressDirPath: $NAME_$VERSION_$PLATFORM
-      needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
-      itchLastChangelogUpdateName: 
-      useGithubActions: 0
-      useUnityActions: 0
-      needGamejolthPush: 0
-      needSteamPush: 0
-      needGoogleDricePush: 0
-    - outputRoot: Builds/
-      middlePath: $NAME_$VERSION_$PLATFORM/$NAME_$VERSION/$NAME$EXECUTABLE
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
-      targetGroup: 1
-      target: 2
-      options: 0
-      needZip: 1
-      compressDirPath: $NAME_$VERSION_$PLATFORM
-      needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
-      itchLastChangelogUpdateName: 
-      useGithubActions: 0
-      useUnityActions: 0
-      needGamejolthPush: 0
-      needSteamPush: 0
-      needGoogleDricePush: 0
-    - outputRoot: Builds/
-      middlePath: $NAME_$VERSION_$PLATFORM/
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
-      targetGroup: 13
-      target: 20
       options: 8
-      needZip: 1
-      compressDirPath: $NAME_$VERSION_$PLATFORM
-      needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
-      itchLastChangelogUpdateName: 
-      useGithubActions: 0
-      useUnityActions: 0
-      needGamejolthPush: 0
-      needSteamPush: 0
-      needGoogleDricePush: 0
-    - outputRoot: Builds/
-      middlePath: $NAME_$VERSION_$PLATFORM$EXECUTABLE
-      scriptingDefinySymbols: UNITY_POST_PROCESSING_STACK_V2;TMP_PRESENT;ARABSUPPORT_ENABLED
-      targetGroup: 7
-      target: 13
-      options: 8
+      isVirtualRealitySupported: 0
       needZip: 0
-      compressDirPath: 
+      compressDirPath: $NAME_$VERSION_$PLATFORM
       needItchPush: 0
-      itchChannel: 
-      itchDirPath: 
-      itchAddLastChangelogUpdateNameToVerison: 0
+      itchChannel: windows-64
+      itchDirPath: $NAME_$VERSION_$PLATFORM
+      itchAddLastChangelogUpdateNameToVerison: 1
       itchLastChangelogUpdateName: 
       useGithubActions: 0
       useUnityActions: 0
@@ -244,6 +66,7 @@ MonoBehaviour:
       targetGroup: 1
       target: 5
       options: 0
+      isVirtualRealitySupported: 0
       needZip: 1
       compressDirPath: $NAME_$VERSION_$PLATFORM
       needItchPush: 1
@@ -262,6 +85,7 @@ MonoBehaviour:
       targetGroup: 1
       target: 19
       options: 0
+      isVirtualRealitySupported: 0
       needZip: 1
       compressDirPath: $NAME_$VERSION_$PLATFORM
       needItchPush: 1
@@ -280,6 +104,7 @@ MonoBehaviour:
       targetGroup: 1
       target: 24
       options: 0
+      isVirtualRealitySupported: 0
       needZip: 1
       compressDirPath: $NAME_$VERSION_$PLATFORM
       needItchPush: 1
@@ -298,6 +123,7 @@ MonoBehaviour:
       targetGroup: 1
       target: 2
       options: 0
+      isVirtualRealitySupported: 0
       needZip: 1
       compressDirPath: $NAME_$VERSION_$PLATFORM
       needItchPush: 1
@@ -316,6 +142,7 @@ MonoBehaviour:
       targetGroup: 13
       target: 20
       options: 0
+      isVirtualRealitySupported: 0
       needZip: 1
       compressDirPath: $NAME_$VERSION_$PLATFORM
       needItchPush: 1
@@ -334,6 +161,7 @@ MonoBehaviour:
       targetGroup: 1
       target: 19
       options: 8
+      isVirtualRealitySupported: 1
       needZip: 1
       compressDirPath: $NAME_$VERSION_$PLATFORM
       needItchPush: 1

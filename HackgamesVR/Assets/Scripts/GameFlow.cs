@@ -42,16 +42,38 @@ public class GameFlow : MonoBehaviour {
 		ProcessTutorial();
 	}
 
-	public void OnWinWave() {
+#if !VR_VERSION	
+	private void Update() {
+
+		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+			OnPlayerPressButton(0);
+		else if (Input.GetKeyDown(KeyCode.Alpha1))
+			OnPlayerPressButton(0);
+		else if (Input.GetKeyDown(KeyCode.Alpha2))
+			OnPlayerPressButton(1);
+		else if (Input.GetKeyDown(KeyCode.Alpha3))
+			OnPlayerPressButton(2);
+	}
+#endif
+
+public void OnWinWave() {
 		if (isWaitDeadButton)
 			return;
 		upgrader.Shuffle();
 
 		mainText.text = "Wave complete!\n\n";
 		mainText.text += "Select upgrade:\n\n";
-		mainText.text += $"(A){upgrader.data[0].name} - {upgrader.data[0].description}\n\n";
-		mainText.text += $"(B){upgrader.data[1].name} - {upgrader.data[1].description}\n\n";
-		mainText.text += $"(C){upgrader.data[2].name} - {upgrader.data[2].description}\n\n";
+
+#if VR_VERSION
+		mainText.text += $"(A) {upgrader.data[0].name} - {upgrader.data[0].description}\n\n";
+		mainText.text += $"(B) {upgrader.data[1].name} - {upgrader.data[1].description}\n\n";
+		mainText.text += $"(C) {upgrader.data[2].name} - {upgrader.data[2].description}\n\n";
+#else
+		mainText.text += $"(1) {upgrader.data[0].name} - {upgrader.data[0].description}\n\n";
+		mainText.text += $"(2) {upgrader.data[1].name} - {upgrader.data[1].description}\n\n";
+		mainText.text += $"(3) {upgrader.data[2].name} - {upgrader.data[2].description}\n\n";
+#endif
+
 		isWaitForUpgrade = true;
 
 		TutorialText t = tutorials[currTutorial];
@@ -68,7 +90,12 @@ public class GameFlow : MonoBehaviour {
 		else {
 			mainText.text += "Your ship is destroyed and all that is left is to endlessly experience the moment of his death";
 		}
+
+#if VR_VERSION
 		mainText.text += "\n\nPress 'A' to play again";
+#else
+		mainText.text += "\n\nPress '1' to play again";
+#endif
 
 		isWaitDeadButton = true;
 		player.isProcessInput = false;
@@ -82,7 +109,12 @@ public class GameFlow : MonoBehaviour {
 		mainText.text += $"Lasers fired: {playerWeapon.shootedProjectiles}\n";
 		mainText.text += $"Distance traveled: {(player.movedDist / 1000).ToString("0.00")}km\n";
 		mainText.text += $"Enemies killed: {spawner.killedEnemies}\n";
+
+#if VR_VERSION
 		mainText.text += "\n\nPress 'A' to play again";
+#else
+		mainText.text += "\n\nPress '1' to play again";
+#endif
 
 		TutorialText t = tutorials[currTutorial];
 		objectiveText.text = string.IsNullOrEmpty(t.textObjective) ? "  " : t.textObjective.Replace("\\n", "\n") + spawner.GetProgressStr();
@@ -168,7 +200,11 @@ public class GameFlow : MonoBehaviour {
 		mainText.text = string.IsNullOrEmpty(t.textMain) ? "  " : t.textMain.Replace("\\n", "\n");
 		objectiveText.text = string.IsNullOrEmpty(t.textObjective) ? "  " : t.textObjective.Replace("\\n", "\n");
 
-		if(currTutorial == 8)
+		mainText.text = mainText.text.Replace(@"'A'", @"'1'");
+		mainText.text = mainText.text.Replace("\"A\"", @"'1'");
+		objectiveText.text = objectiveText.text.Replace(@"'A'", @"'1'");
+
+		if (currTutorial == 8)
 			objectiveText.text += $"({killedAsteroids} / {neededAsteroids})";
 		if (currTutorial == 9)
 			objectiveText.text += spawner.GetProgressStr();
