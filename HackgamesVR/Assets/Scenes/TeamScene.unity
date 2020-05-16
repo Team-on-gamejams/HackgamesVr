@@ -6360,7 +6360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoNotTesselate: 0
-  savedPos: {x: 285.20004, y: 241.42755, z: 6.0005264}
+  savedPos: {x: 285.20023, y: 241.42871, z: 5.9985347}
   savedUp: {x: 0, y: 1, z: 0}
   savedRectSize: {x: 430.6598, y: 38.450005}
   savedColor: {r: 0, g: 0, b: 0, a: 1}
@@ -7491,7 +7491,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 1
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
@@ -13922,7 +13922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoNotTesselate: 0
-  savedPos: {x: -216.09999, y: 241.42564, z: 6.0005264}
+  savedPos: {x: -216.09969, y: 241.42776, z: 5.998475}
   savedUp: {x: 0, y: 1, z: 0}
   savedRectSize: {x: 533.5598, y: 38.450005}
   savedColor: {r: 0, g: 0, b: 0, a: 1}
@@ -20160,7 +20160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoNotTesselate: 0
-  savedPos: {x: 257.20306, y: 241.42755, z: 6.0005264}
+  savedPos: {x: 257.20322, y: 241.42871, z: 5.9985313}
   savedUp: {x: 0, y: 1, z: 0}
   savedRectSize: {x: 374.6659, y: 38.450005}
   savedColor: {r: 1, g: 0, b: 0, a: 1}
@@ -21044,7 +21044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoNotTesselate: 0
-  savedPos: {x: -249.85934, y: 241.42564, z: 6.0005264}
+  savedPos: {x: -249.85928, y: 241.42776, z: 5.9984713}
   savedUp: {x: 0, y: 1, z: 0}
   savedRectSize: {x: 466.0411, y: 38.450005}
   savedColor: {r: 1, g: 0, b: 0, a: 1}
@@ -23514,7 +23514,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 1
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25

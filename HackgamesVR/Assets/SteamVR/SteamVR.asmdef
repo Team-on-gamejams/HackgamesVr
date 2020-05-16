@@ -3,12 +3,15 @@
     "references": [
         "SteamVR_Windows_EditorHelper"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [
+        "VR_VERSION"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

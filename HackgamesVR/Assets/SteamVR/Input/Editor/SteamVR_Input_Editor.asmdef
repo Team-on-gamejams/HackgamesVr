@@ -3,7 +3,6 @@
     "references": [
         "SteamVR"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor"
     ],
@@ -12,5 +11,9 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [
+        "VR_VERSION"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

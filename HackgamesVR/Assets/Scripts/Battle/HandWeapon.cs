@@ -2,25 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+#if VR_VERSION
 using Valve.VR;
 using Valve.VR.InteractionSystem;
+#endif
 
 public class HandWeapon : MonoBehaviour {
-	[SerializeField] SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("Pistol", "Shoot");
 	[SerializeField] Weapon weapon = null;
-	[SerializeField] Interactable interactable = null;
 
+#if VR_VERSION
+	[SerializeField] SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("Pistol", "Shoot");
+	[SerializeField] Interactable interactable = null;
+#endif
 
 #if UNITY_EDITOR
 	private void OnValidate() {
 		if (weapon == null)
 			weapon = GetComponent<Weapon>();
+#if VR_VERSION
 		if (interactable == null)
 			interactable = GetComponent<Interactable>();
+#endif
 	}
 #endif
 
 	void Update() {
+#if VR_VERSION
 		if (interactable.attachedToHand) {
 			SteamVR_Input_Sources hand = interactable.attachedToHand.handType;
 			weapon.IsShooting = shootAction[hand].state;
@@ -28,8 +35,11 @@ public class HandWeapon : MonoBehaviour {
 		else {
 			weapon.IsShooting = false;
 		}
+#endif
+
 	}
 
+#if VR_VERSION
 	private void OnHandHoverBegin(Hand hand) {
 		hand.ShowGrabHint();
 	}
@@ -58,4 +68,5 @@ public class HandWeapon : MonoBehaviour {
 			transform.localEulerAngles = new Vector3(-45f, 0, 0);
 		}
 	}
+#endif
 }

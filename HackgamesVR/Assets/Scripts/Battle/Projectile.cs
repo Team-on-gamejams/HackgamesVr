@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-using Valve.VR;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour {

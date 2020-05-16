@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+#if VR_VERSION
 using Valve.VR;
 using Valve.VR.InteractionSystem;
-using System;
+#endif
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerShip : MonoBehaviour {
@@ -20,7 +22,9 @@ public class PlayerShip : MonoBehaviour {
 	[SerializeField] ShipJoystick left2Joystick;
 	[SerializeField] ShipJoystick right1Joystick;
 	[SerializeField] ShipJoystick right2Joystick;
+#if VR_VERSION
 	[SerializeField] SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("RightJoystick", "Shoot");
+#endif
 
 	[Header("Audio")] [Space]
 	[SerializeField] AudioClip engineClip;
@@ -120,6 +124,8 @@ public class PlayerShip : MonoBehaviour {
 		speedTextField.text = "Speed: " + rb.velocity.magnitude.ToString("0") + "m/s";
 		timeTextField.text = DateTime.Now.ToShortTimeString();
 
+		//TODO: read on joystick
+#if VR_VERSION
 		Interactable shootInteractable = right1Joystick.interactable;
 		if(shootInteractable == null || !shootInteractable.attachedToHand)
 			shootInteractable = right2Joystick.interactable;
@@ -130,6 +136,7 @@ public class PlayerShip : MonoBehaviour {
 		else {
 			playerWeapon.IsShooting = false;
 		}
+#endif
 	}
 
 	public void ApplyEngineUpgrade(float _moveSpeed) {

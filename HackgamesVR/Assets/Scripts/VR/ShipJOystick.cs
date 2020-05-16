@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
+#if VR_VERSION
 using Valve.VR;
 using Valve.VR.InteractionSystem;
+#endif
 
-[RequireComponent(typeof(Interactable))]
 public class ShipJoystick : MonoBehaviour {
+#if VR_VERSION
 	public Interactable interactable;
+	[SerializeField] SteamVR_Action_Boolean lockAction;
+	private Hand handHoverLocked = null;
+#endif
 
 	[SerializeField] float xOffset = 45.0f;
-	[SerializeField] SteamVR_Action_Boolean lockAction;
 
-	private Hand handHoverLocked = null;
 	private bool driving = false;
 
 	Vector3 bounds1 = new Vector3(-90, 0, -90);
@@ -21,23 +25,29 @@ public class ShipJoystick : MonoBehaviour {
 
 #if UNITY_EDITOR
 	private void OnValidate() {
+#if VR_VERSION
 		if (interactable == null)
 			interactable = GetComponent<Interactable>();
+#endif
 	}
 #endif
 
 	void OnDisable() {
+#if VR_VERSION
 		if (handHoverLocked) {
 			handHoverLocked.HideGrabHint();
 			handHoverLocked.HoverUnlock(interactable);
 			handHoverLocked = null;
-		}
+	}
+#endif
 	}
 
 	public Vector2 GetValue() {
+		//TODO: read axis
 		return value;
 	}
 
+#if VR_VERSION
 	private IEnumerator HapticPulses(Hand hand, float flMagnitude, int nCount) {
 		if (hand != null) {
 			int nRangeMax = (int)Util.RemapNumberClamped(flMagnitude, 0.0f, 1.0f, 100.0f, 900.0f);
@@ -135,4 +145,5 @@ public class ShipJoystick : MonoBehaviour {
 
 		return q;
 	}
+#endif
 }
