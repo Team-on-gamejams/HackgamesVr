@@ -82,7 +82,7 @@ public class BuildManagerWindow : EditorWindow {
 			scrollPosChangelog = EditorGUILayout.BeginScrollView(scrollPosChangelog);
 			++EditorGUI.indentLevel;
 
-			//changelog.updateName = DrawStringField("Update name", changelog.updateName);
+			changelog.updateName = DrawStringField("Update name", changelog.updateName);
 
 			--EditorGUI.indentLevel;
 			EditorGUILayout.EndScrollView();
@@ -116,6 +116,7 @@ public class BuildManagerWindow : EditorWindow {
 
 			buidsList.Selected.outputRoot = EditorGUILayout.TextField("Output root", buidsList.Selected.outputRoot);
 			buidsList.Selected.middlePath = EditorGUILayout.TextField("Middle path", buidsList.Selected.middlePath);
+			buidsList.Selected.scriptingDefinySymbols = EditorGUILayout.TextField("Scripting Defines", buidsList.Selected.scriptingDefinySymbols);
 
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField("Build Target Group", GUILayout.MinWidth(0));

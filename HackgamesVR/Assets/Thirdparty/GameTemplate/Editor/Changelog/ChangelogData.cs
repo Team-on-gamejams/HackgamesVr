@@ -5,11 +5,7 @@ using UnityEditor;
 
 [Serializable]
 public class ChangelogData {
-	const string updateNamePolyglotKey = "Changelog_";
-
-	public string LocalizedUpdate => localizedUpdate;
-	public static string localizedUpdate => "";
-
+	public string updateName;
 
 	#region Serialization
 	public static ChangelogData LoadChangelogFromFile(string usedFileName) {

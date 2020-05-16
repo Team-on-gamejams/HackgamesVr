@@ -16,7 +16,7 @@ public static class BuildManager {
 
 	public static void RunBuildSequnce(BuildSequence sequence, ChangelogData changelog) {
 		// Start init
-		GameManager.InstanceEditor.buildNameString = $"{PlayerSettings.bundleVersion}";
+		GameManager.InstanceEditor.buildNameString = $"{PlayerSettings.bundleVersion} - {changelog.updateName}";
 		usedDate = DateTime.Now;
 		//End init
 
@@ -24,14 +24,16 @@ public static class BuildManager {
 		DateTime startTime = DateTime.Now;
 		BuildTarget targetBeforeStart = EditorUserBuildSettings.activeBuildTarget;
 		BuildTargetGroup targetGroupBeforeStart = BuildPipeline.GetBuildTargetGroup(targetBeforeStart);
+		string definesBeforeStart = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroupBeforeStart);
 
 		string[] buildsPath = new string[sequence.builds.Length];
 		for(byte i = 0; i < sequence.builds.Length; ++i) {
 			BuildData data = sequence.builds[i];
-			buildsPath[i] = BaseBuild(data.targetGroup, data.target, data.options, data.outputRoot + GetPathWithVars(data, data.middlePath));
+			buildsPath[i] = BaseBuild(data.targetGroup, data.target, data.options, data.outputRoot + GetPathWithVars(data, data.middlePath), data.scriptingDefinySymbols);
 		}
 
 		EditorUserBuildSettings.SwitchActiveBuildTarget(targetGroupBeforeStart, targetBeforeStart);
+		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroupBeforeStart, definesBeforeStart);
 		Debug.Log($"End building all. Elapsed time: {string.Format("{0:mm\\:ss}", DateTime.Now - startTime)}");
 
 		startTime = DateTime.Now;
@@ -55,7 +57,7 @@ public static class BuildManager {
 				continue;
 
 			if (!string.IsNullOrEmpty(buildsPath[i])) {
-				if(sequence.builds[i].itchAddLastChangelogUpdateNameToVerison) {
+				if(sequence.builds[i].itchAddLastChangelogUpdateNameToVerison && !string.IsNullOrEmpty(changelog?.updateName)) {
 					sequence.builds[i].itchLastChangelogUpdateName = GameManager.InstanceEditor.buildNameString;
 				}
 				PushItch(sequence, sequence.builds[i]);
@@ -126,7 +128,7 @@ public static class BuildManager {
 	#endregion
 
 	#region Base methods
-	static string BaseBuild(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget, BuildOptions buildOptions, string buildPath) {
+	static string BaseBuild(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget, BuildOptions buildOptions, string buildPath, string definesSymbols) {
 		if (buildTarget == BuildTarget.Android && PlayerSettings.Android.useCustomKeystore && string.IsNullOrEmpty(PlayerSettings.Android.keyaliasPass)) {
 			PlayerSettings.Android.keyaliasPass = PlayerSettings.Android.keystorePass = "keystore";
 		}
@@ -142,6 +144,7 @@ public static class BuildManager {
 			options = buildOptions,
 		};
 
+		PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, definesSymbols);
 		BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
 		BuildSummary summary = report.summary;
 

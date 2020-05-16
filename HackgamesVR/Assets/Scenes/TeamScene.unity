@@ -8860,10 +8860,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: {fileID: 766902593}
-  xOffset: 45
   lockAction:
     actionPath: /actions/RightJoystick/in/Lock
     needsReinit: 0
+  triggerAction:
+    actionPath: 
+    needsReinit: 1
+  xOffset: 45
 --- !u!114 &766902593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9945,10 +9948,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: {fileID: 853242154}
-  xOffset: 45
   lockAction:
     actionPath: /actions/RightJoystick/in/Lock
     needsReinit: 0
+  triggerAction:
+    actionPath: /actions/RightJoystick/in/Shoot
+    needsReinit: 0
+  xOffset: 45
 --- !u!114 &853242154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12004,10 +12010,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: {fileID: 973215866}
-  xOffset: 45
   lockAction:
     actionPath: /actions/LeftJoystick/in/Lock
     needsReinit: 0
+  triggerAction:
+    actionPath: 
+    needsReinit: 0
+  xOffset: 45
 --- !u!114 &973215866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13311,10 +13320,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: {fileID: 1117078707}
-  xOffset: 45
   lockAction:
     actionPath: /actions/LeftJoystick/in/Lock
     needsReinit: 0
+  triggerAction:
+    actionPath: 
+    needsReinit: 0
+  xOffset: 45
 --- !u!114 &1117078707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16772,6 +16784,49 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 281120554}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1390070402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1390070404}
+  - component: {fileID: 1390070403}
+  m_Layer: 0
+  m_Name: ~LeanTween
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!114 &1390070403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390070402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2f4b27196f84954b44753aaac214bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1390070404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390070402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1395230710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3167409079010114373, guid: 1691692be39d30942aab81a3c2ba7068,
@@ -17803,10 +17858,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9777912543ad481498d194a5c3b9e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 1497241453}
   shootAction:
     actionPath: /actions/Pistol/in/Shoot
     needsReinit: 0
-  weapon: {fileID: 1497241453}
   interactable: {fileID: 1497241452}
 --- !u!114 &1497241456
 MonoBehaviour:
@@ -23822,9 +23877,6 @@ MonoBehaviour:
   left2Joystick: {fileID: 973215865}
   right1Joystick: {fileID: 853242153}
   right2Joystick: {fileID: 766902592}
-  shootAction:
-    actionPath: /actions/RightJoystick/in/Shoot
-    needsReinit: 0
   engineClip: {fileID: 8300000, guid: 1931e41fd8e3b5f42a814ee01c74f5cc, type: 3}
   trailsForward:
   - {fileID: 1071943232}
