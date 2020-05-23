@@ -73,7 +73,7 @@ MonoBehaviour:
       itchChannel: windows-32
       itchDirPath: $NAME_$VERSION_$PLATFORM
       itchAddLastChangelogUpdateNameToVerison: 1
-      itchLastChangelogUpdateName: 
+      itchLastChangelogUpdateName: 0.2 - keyboard + mouse port
       useGithubActions: 0
       useUnityActions: 0
       needGamejolthPush: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
       itchChannel: windows-64
       itchDirPath: $NAME_$VERSION_$PLATFORM
       itchAddLastChangelogUpdateNameToVerison: 1
-      itchLastChangelogUpdateName: 
+      itchLastChangelogUpdateName: 0.2 - keyboard + mouse port
       useGithubActions: 0
       useUnityActions: 0
       needGamejolthPush: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
       itchChannel: linux-universal
       itchDirPath: $NAME_$VERSION_$PLATFORM
       itchAddLastChangelogUpdateNameToVerison: 1
-      itchLastChangelogUpdateName: 
+      itchLastChangelogUpdateName: 0.2 - keyboard + mouse port
       useGithubActions: 0
       useUnityActions: 0
       needGamejolthPush: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
       itchChannel: osx-universal
       itchDirPath: $NAME_$VERSION_$PLATFORM
       itchAddLastChangelogUpdateNameToVerison: 1
-      itchLastChangelogUpdateName: 
+      itchLastChangelogUpdateName: 0.2 - keyboard + mouse port
       useGithubActions: 0
       useUnityActions: 0
       needGamejolthPush: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
       itchChannel: windows-VR
       itchDirPath: $NAME_$VERSION_$PLATFORM
       itchAddLastChangelogUpdateNameToVerison: 1
-      itchLastChangelogUpdateName: 
+      itchLastChangelogUpdateName: 0.2 - keyboard + mouse port
       useGithubActions: 0
       useUnityActions: 0
       needGamejolthPush: 0
