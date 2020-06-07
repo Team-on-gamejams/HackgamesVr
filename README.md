@@ -1,7 +1,7 @@
 # [Hackgames](https://www.facebook.com/hackgames.in.ua)
 Theme: Retro game in VR
 
-![Cover](Screenshots/CoverNonVr.png)  
+![Cover](Screenshots/CoverNonVr.jpg)  
 Space wave defence, where player defend mothership from pirat waves with upgrades, easter eggs and cool controls(for vr)
 
 # Downloads and Links
