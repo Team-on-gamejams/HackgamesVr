@@ -2,7 +2,11 @@
 Theme: Retro game in VR
 
 ![Cover](Screenshots/CoverNonVr.jpg)  
-Space wave defence, where player defend mothership from pirat waves with upgrades, easter eggs and cool controls(for vr)
+Space fighter simulator with realistic controls for Hackgames VR jam. Protect mothership from waves of pirates, upgrade between waves and find all 5 easter eggs. Seated playing only.
+
+Containts in-game tutorial. All game in English, it's just trailer with Ukrainian translation.
+
+Requires SteamVR to launch. Tested only with WMR, but I pretty sure that it works with all SteamVR supported headsets.
 
 # Downloads and Links
 Available in [Windows, Linux, OSX for Non-VR and Windows for VR](https://teamon.itch.io/space-fighter-trainer). If you encounter any problem, please leave a issue!  
